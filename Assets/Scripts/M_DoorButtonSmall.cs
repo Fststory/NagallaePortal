@@ -110,40 +110,6 @@ public class M_DoorButtonSmall : MonoBehaviour
             }
         }
 
-
-
-        //if (isMoving)
-        //{
-        //    print("문이 열려야 합니다...");
-        //    //문이 열리는 걸 형상화해 보자.
-        //    print("버튼이 내려가고요...");
-        //    //버튼이 아래로... 버튼의 로컬 방향으로 하는 게 좋겠다
-        //    Vector3 pressDown = transform.up * -1;
-        //    //버튼이 아래로 내려간다. 계속... 계속...
-        //    pressButton.transform.position += pressDown * pressSpeed * Time.deltaTime;
-
-        //    print("문이 열리도록 움직여야 하고요...");
-        //    print("문이 열리는 사운드도 찾아야죠...");
-        //    isMoving = false;
-        //}
-
-
-
-        //if (isMoving)
-        //{
-        //    print("이때 문이 닫혀야 합니다...");
-        //    print("버튼이 움직이면서...");
-        //    Vector3 pressDown = transform.up;
-        //    //버튼이 올라간다. 계속...
-        //    //버튼 오르락 내리락 타임을 추가해야겠다.
-        //    pressButton.transform.position += pressDown * pressSpeed * Time.deltaTime;
-        //    print("문이 닫히도록 움직여야 하고요...");
-        //    //문이 닫히는 걸 형상화해보자
-        //    print("문이 닫히는 사운드도 찾아야죠...");
-
-        //    countOpenTime = 0; //안 하면 영원히 문이 닫힌다.
-        //    isMoving = false;
-        //}
     }
 
 }
