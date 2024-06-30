@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.WSA;
 
 public class CamRotate : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class CamRotate : MonoBehaviour
 
     void Start()
     {
-        
+        // 마우스 커서가 화면 밖으로 나가지 않도록 중앙에 고정한다.(마우스 커서의 위치에 구애받지 않고 플레이 가능!)
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
