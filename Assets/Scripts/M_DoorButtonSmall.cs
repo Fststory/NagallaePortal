@@ -21,6 +21,8 @@ public class M_DoorButtonSmall : MonoBehaviour
 
     //어라...? 가이드라인... 코드를 따로 쓸 필요 있나...?
     //여따가... 처넣으면 안되나?
+    // 처넣으니 되더라(7/1)
+
     #endregion
 
     public GameObject pressButton;
@@ -86,13 +88,24 @@ public class M_DoorButtonSmall : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))    //만약 플레이어가 클릭한다면
         {
-            //isDoorOpen = !isDoorOpen; //이건 누를때마다 토글
-            isDoorOpen = true; //길이 활성화.
-            if (countOpenTime == 0 && buttonMoveTime == 0 )
+            //레이를 카메라 방향으로 발사
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
+            RaycastHit push = new RaycastHit();
+
+            if (Physics.Raycast(ray, out push))
             {
-                isMoving = true; //버튼이랑 문이 움직이는 연출
-            }
-            
+                if (push.collider != null && push.collider.CompareTag("smallButton"))
+                {
+                    //isDoorOpen = !isDoorOpen; //이건 누를때마다 토글
+                    isDoorOpen = true; //길이 활성화.
+                    if (countOpenTime == 0 && buttonMoveTime == 0)
+                    {
+                        isMoving = true; //버튼이랑 문이 움직이는 연출
+                    }
+                }
+                
+            }           
         }
         
         if (isDoorOpen) //만약 문이 열린다면

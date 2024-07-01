@@ -476,6 +476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M_Buttonsmall
       objectReference: {fileID: 0}
+    - target: {fileID: 4618511040161835855, guid: 0f0876ee69a28e6419f9203a3dc3715a, type: 3}
+      propertyPath: m_TagString
+      value: smallButton
+      objectReference: {fileID: 0}
     - target: {fileID: 7273077378897192450, guid: 0f0876ee69a28e6419f9203a3dc3715a, type: 3}
       propertyPath: activate
       value: 
