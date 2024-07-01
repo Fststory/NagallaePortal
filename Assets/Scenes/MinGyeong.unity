@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 468217028354720981, guid: 95a2ea653dc130f4f941c00bdbbeddd1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2055370720221954141, guid: 95a2ea653dc130f4f941c00bdbbeddd1, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -182,9 +186,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: M_ButtonBig
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 468217028354720981, guid: 95a2ea653dc130f4f941c00bdbbeddd1, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6822657175226536122, guid: 95a2ea653dc130f4f941c00bdbbeddd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 439838679}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8176542824025020183, guid: 95a2ea653dc130f4f941c00bdbbeddd1, type: 3}
       insertIndex: -1
@@ -233,6 +241,112 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &439838675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439838679}
+  - component: {fileID: 439838678}
+  - component: {fileID: 439838677}
+  - component: {fileID: 439838676}
+  m_Layer: 0
+  m_Name: M_ButtonGuideLine (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &439838676
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439838675}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &439838677
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439838675}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e9eb30b03dd466f479a251bb87d6f514, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &439838678
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439838675}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &439838679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439838675}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.92, y: -0.18000002, z: 1.7509999}
+  m_LocalScale: {x: 0.5, y: 5.304048, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 725549105}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &619655188 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4618511040161835855, guid: 0f0876ee69a28e6419f9203a3dc3715a, type: 3}
@@ -431,10 +545,9 @@ MonoBehaviour:
   isActivate: 0
   isOpen: 0
   isClose: 0
-  pressSpeed: 1
-  openSpeed: 8
-  buttonMoveTime: 0
-  buttonMoveEndTime: 0.2
+  guideline: {fileID: 439838675}
+  activate: {fileID: 2100000, guid: c2b41a369828fd24b8f7ac8da8c5ea4d, type: 2}
+  deactivate: {fileID: 2100000, guid: e9eb30b03dd466f479a251bb87d6f514, type: 2}
 --- !u!114 &725549103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +564,11 @@ MonoBehaviour:
   ButtonTarget: {fileID: 1144844339}
   Speed: 1
   activate: 0
+--- !u!4 &725549105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6822657175226536122, guid: 95a2ea653dc130f4f941c00bdbbeddd1, type: 3}
+  m_PrefabInstance: {fileID: 43370993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &943536580
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +779,6 @@ GameObject:
   - component: {fileID: 1052110387}
   - component: {fileID: 1052110386}
   - component: {fileID: 1052110385}
-  - component: {fileID: 1052110389}
   m_Layer: 0
   m_Name: M_ButtonGuideLine
   m_TagString: Untagged
@@ -756,21 +873,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 619655190}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1052110389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052110384}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e36e7128410bf154498637de973f6aee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActivate: 0
-  dAc: {fileID: 2100000, guid: e9eb30b03dd466f479a251bb87d6f514, type: 2}
-  ac: {fileID: 2100000, guid: c2b41a369828fd24b8f7ac8da8c5ea4d, type: 2}
 --- !u!4 &1144844339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9001312913645220834, guid: 95a2ea653dc130f4f941c00bdbbeddd1, type: 3}

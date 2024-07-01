@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,17 +34,32 @@ public class M_DoorButtonBig : MonoBehaviour
     public bool isOpen = false; //문 열리는 연출 중?
     public bool isClose = false; //문 닫히는 연출 중?
 
-    public float pressSpeed = 0.3f; //버튼 연출 속도
-    public float openSpeed = 8; //문 연출 속도
+    float pressSpeed = 1f; //버튼 연출 속도
+    float openSpeed = 8; //문 연출 속도
 
 
-    public float buttonMoveTime = 0.0f;
-    public float buttonMoveEndTime = 0.5f;
+    float buttonMoveTime = 0.0f;
+    float buttonMoveEndTime = 0.2f;
+
+
+    #region 가이드라인 머태리얼 변수
+
+    public GameObject guideline;
+
+    public Material activate;
+    public Material deactivate;
+
+    private Renderer lineRenderer;
+
+    #endregion
 
 
     void Start()
     {
-
+        if (guideline != null)
+        {
+            lineRenderer = guideline.GetComponent<Renderer>();
+        }
     }
 
     void Update()
@@ -94,6 +110,7 @@ public class M_DoorButtonBig : MonoBehaviour
         if (other.gameObject == Obj)
         {
             isOpen = true;
+            lineRenderer.material = activate;
         }
 
     }
@@ -121,7 +138,9 @@ public class M_DoorButtonBig : MonoBehaviour
         if (other.gameObject == Obj)
         {
             isClose = true;
+            lineRenderer.material = deactivate;
         }
     }
+
 
 }

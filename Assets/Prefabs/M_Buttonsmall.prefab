@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2693770768864914013}
+  - component: {fileID: 7273077378897192450}
   m_Layer: 0
   m_Name: M_Buttonsmall
   m_TagString: Untagged
@@ -33,6 +34,25 @@ Transform:
   - {fileID: 7266618390850775365}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7273077378897192450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618511040161835855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52079960fa5765a45b385f07274b130c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressButton: {fileID: 0}
+  openDoorLeft: {fileID: 0}
+  openDoorRight: {fileID: 0}
+  countCloseTime: 10
+  guideline: {fileID: 0}
+  activate: {fileID: 0}
+  deactivate: {fileID: 0}
 --- !u!1 &8783559348956474960
 GameObject:
   m_ObjectHideFlags: 0
