@@ -20,13 +20,15 @@ public class BluePortalBullet : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.forward * bulletSpeed * Time.deltaTime;
+        transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
+
+
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("CanPortalWall"))
         {
-            GameObject blueportal = Instantiate(bluePortalPrefab, col.transform.position, col.transform.rotation);
+            GameObject blueportal = Instantiate(bluePortalPrefab, transform.position, col.transform.rotation);
             Destroy(gameObject);
         }
         else

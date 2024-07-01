@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
         PlayerRotate();
     }
 
+
+
     void PlayerMove()
     {
         // 플레이어의 키 입력에 따라 움직임(전후좌우)을 구현
