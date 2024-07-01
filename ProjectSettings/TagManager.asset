@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - smallButton
+=======
+  - CanPortalWall
+>>>>>>> main
   layers:
   - Default
   - TransparentFX
@@ -13,7 +17,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - CanPortalWall
   - 
   - 
   - 
