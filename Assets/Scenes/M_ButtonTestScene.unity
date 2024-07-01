@@ -504,6 +504,10 @@ PrefabInstance:
       propertyPath: openDoorRight
       value: 
       objectReference: {fileID: 1782281349}
+    - target: {fileID: 8808110914251557577, guid: 0f0876ee69a28e6419f9203a3dc3715a, type: 3}
+      propertyPath: m_TagString
+      value: smallButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
