@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6822657175226536122}
   - component: {fileID: 6003347209597911331}
-  - component: {fileID: 468217028354720981}
+  - component: {fileID: -3603161954234074814}
   m_Layer: 0
   m_Name: M_ButtonBig
   m_TagString: Untagged
@@ -193,7 +193,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5, y: 0.7, z: 2.5}
   m_Center: {x: 0, y: 0.2, z: 0}
---- !u!114 &468217028354720981
+--- !u!114 &-3603161954234074814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,10 +214,9 @@ MonoBehaviour:
   isActivate: 0
   isOpen: 0
   isClose: 0
-  pressSpeed: 0.3
-  openSpeed: 8
-  buttonMoveTime: 0
-  buttonMoveEndTime: 0.5
+  guideline: {fileID: 0}
+  activate: {fileID: 0}
+  deactivate: {fileID: 0}
 --- !u!1 &9091875458245142401
 GameObject:
   m_ObjectHideFlags: 0
