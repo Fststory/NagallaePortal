@@ -2882,7 +2882,7 @@ MonoBehaviour:
   floorMask:
     serializedVersion: 2
     m_Bits: 0
-  rotSpeed: 300
+  rotSpeed: 200
 --- !u!54 &1116372017
 Rigidbody:
   m_ObjectHideFlags: 0
