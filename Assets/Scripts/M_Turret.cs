@@ -21,7 +21,6 @@ public class M_Turret : MonoBehaviour
 
 
     public float shootTime = 0.0f;
-
     public float shootDelay = 1.5f;
 
 
@@ -77,16 +76,16 @@ public class M_Turret : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other == playercol)
-        {
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other == playercol)
+    //    {
 
-        }
-    }
+    //    }
+    //}
     private void OnTriggerStay(Collider other)
     {
-        if (other==playercol)
+        if (other.gameObject.name == "Player")
         {
             if (warningTime == 1.0f) //첫 경고인가?
             {
@@ -110,7 +109,7 @@ public class M_Turret : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other == playercol)
+        if (other.gameObject.name == "Player")
         {
             //사격 이전에 나갔을 때 발동될 명령어
             if (!shooting && warningTime < 1.0f)

@@ -50,6 +50,7 @@ MonoBehaviour:
   openDoorLeft: {fileID: 0}
   openDoorRight: {fileID: 0}
   countCloseTime: 10
+  isDoorOpen: 0
   guideline: {fileID: 0}
   activate: {fileID: 0}
   deactivate: {fileID: 0}
@@ -171,7 +172,7 @@ GameObject:
   - component: {fileID: 7266618390850775365}
   - component: {fileID: 4596374724451577223}
   - component: {fileID: 3805275621794752729}
-  - component: {fileID: 4498683908556022385}
+  - component: {fileID: 595306020050462451}
   m_Layer: 0
   m_Name: ButtonPush
   m_TagString: Untagged
@@ -244,8 +245,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4498683908556022385
-CapsuleCollider:
+--- !u!135 &595306020050462451
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -259,11 +260,9 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 3
+  m_Radius: 7
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
