@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2400717331897388552}
   - component: {fileID: 7072930356491202135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1207743873439625532}
   - component: {fileID: 3820450488267534810}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TurretSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 5796493977859262228}
   - component: {fileID: 5300102943294934245}
   - component: {fileID: 7131413010375881652}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TurretLaserFar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 1861524817462397064}
   - component: {fileID: 3039285595439467294}
   - component: {fileID: 6733227589037446719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TurretBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,6 +413,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &4672085515688409242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6943155878710848471}
+  m_Layer: 6
+  m_Name: FirePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6943155878710848471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672085515688409242}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.287, z: 0.708}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8551179636593237982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6157341415411382665
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +456,7 @@ GameObject:
   - component: {fileID: 30292946999515123}
   - component: {fileID: 5044270801269525250}
   - component: {fileID: 3514699394171766046}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TurretLasernarrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +543,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 2
@@ -530,9 +561,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8551179636593237982}
   - component: {fileID: 1046155160987016318}
-  m_Layer: 0
+  - component: {fileID: 5311256397603521230}
+  m_Layer: 6
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: LabObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,6 +585,7 @@ Transform:
   - {fileID: 8034017167201844562}
   - {fileID: 2400717331897388552}
   - {fileID: 1207743873439625532}
+  - {fileID: 6943155878710848471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1046155160987016318
@@ -567,10 +600,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0751fc5f94db87446b488bd3ada67f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretbullet: {fileID: 0}
-  fireposition: {fileID: 0}
+  turretbullet: {fileID: 4821471729964594004, guid: b007cdbc6d1fe5b489d4cfb32c2fecfe, type: 3}
+  fireposition: {fileID: 4672085515688409242}
   playercol: {fileID: 0}
   warningTime: 1
   warning: 0
-  shooting: 0
+  shooting: 1
   shootTime: 0
+  shootDelay: 0.3
+--- !u!65 &5311256397603521230
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575262318888342428}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 14.244278}
+  m_Center: {x: 0, y: 0, z: 6.622138}

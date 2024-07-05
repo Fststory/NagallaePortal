@@ -39,7 +39,7 @@ public class M_DoorButtonSmall : MonoBehaviour
     float buttonMoveTime =0.0f;
     float buttonMoveEndTime=0.2f;
 
-    bool isDoorOpen = false; //버튼 활성화 여부 변수
+    public bool isDoorOpen = false; //버튼 활성화 여부 변수
 
     bool isMoving = false; //버튼이 내려가고 문이 열림
     bool isMovingAgain = false; //버튼이 올라가고 문이 닫힘
@@ -55,6 +55,9 @@ public class M_DoorButtonSmall : MonoBehaviour
     private Renderer lineRenderer;
 
     #endregion
+
+    public bool playerHere;
+
 
     void Start()
     {
@@ -86,26 +89,37 @@ public class M_DoorButtonSmall : MonoBehaviour
         // 클릭하면 버튼을 아래로 내리기
         // true false 명령어를 이용해서 print 문이 열린다 / 문이 닫힌다부터
 
-        if (Input.GetMouseButtonDown(0))    //만약 플레이어가 클릭한다면
+        #region 7/3 레이 발사 방법 (폐기)
+        //if (Input.GetMouseButtonDown(0))    //만약 플레이어가 클릭한다면
+        //{
+        //    //레이를 카메라 방향으로 발사
+        //    Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
+        //    RaycastHit push = new RaycastHit();
+
+        //    if (Physics.Raycast(ray, out push))
+        //    {
+        //        if (push.collider != null && push.collider.CompareTag("smallButton"))
+        //        {
+        //            //isDoorOpen = !isDoorOpen; //이건 누를때마다 토글
+        //            isDoorOpen = true; //길이 활성화.
+        //            if (countOpenTime == 0 && buttonMoveTime == 0)
+        //            {
+        //                isMoving = true; //버튼이랑 문이 움직이는 연출
+        //            }
+        //        }
+
+        //    }           
+        //}
+        #endregion
+
+        if (playerHere && Input.GetMouseButtonDown(0))
         {
-            //레이를 카메라 방향으로 발사
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-
-            RaycastHit push = new RaycastHit();
-
-            if (Physics.Raycast(ray, out push))
+            isDoorOpen = true; //길이 활성화.
+            if (countOpenTime == 0 && buttonMoveTime == 0)
             {
-                if (push.collider != null && push.collider.CompareTag("smallButton"))
-                {
-                    //isDoorOpen = !isDoorOpen; //이건 누를때마다 토글
-                    isDoorOpen = true; //길이 활성화.
-                    if (countOpenTime == 0 && buttonMoveTime == 0)
-                    {
-                        isMoving = true; //버튼이랑 문이 움직이는 연출
-                    }
-                }
-                
-            }           
+                isMoving = true; //버튼이랑 문이 움직이는 연출
+            }
         }
         
         if (isDoorOpen) //만약 문이 열린다면
@@ -178,4 +192,13 @@ public class M_DoorButtonSmall : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            playerHere = true;
+        }
+    }
+
 }
