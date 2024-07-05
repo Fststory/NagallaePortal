@@ -11,6 +11,8 @@ public class BulletMove : MonoBehaviour
 
     public GameObject turret;
 
+
+
     //늙어쥑이는것도 똑같이
     public float lifespan = 0.7f;
 
@@ -31,4 +33,5 @@ public class BulletMove : MonoBehaviour
         }
 
     }
+
 }
