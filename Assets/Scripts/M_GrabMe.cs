@@ -95,7 +95,8 @@ public class M_GrabMe : MonoBehaviour
                 grabObj = (GameObject)other.gameObject; //게임오브젝트 변수에 추가 (왜안되냐?)
 
                 grabObj.transform.position = PlayerGrabPoint.position;
-                grabObj.transform.SetParent(gameObject.transform); //부모 컴포넌트 지정
+                //grabObj.transform.SetParent(gameObject.transform); //부모 컴포넌트 지정
+                grabObj.transform.SetParent(PlayerGrabPoint);        //ㄴ7.7 부모 컴포넌트 변경
 
                 Rigidbody rb = grabObj.GetComponent<Rigidbody>();
                 rb.useGravity = false;

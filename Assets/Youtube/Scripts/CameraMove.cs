@@ -10,17 +10,16 @@ public class CameraMove : MonoBehaviour
 
     public Quaternion TargetRotation { private set; get; }
     
-    private Vector3 moveVector = Vector3.zero;
-    private float moveY = 0.0f;
+    private Vector3 moveVector;
 
     private new Rigidbody rigidbody;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
+        rigidbody = GetComponent<Rigidbody>();          // 리지드바디 컴포넌트를 변수에 저장
+        Cursor.lockState = CursorLockMode.Locked;       // 커서 화면 중앙 고정
 
-        TargetRotation = transform.rotation;
+        TargetRotation = transform.rotation;            // 회전 정보를 변수에 저장
     }
 
     private void Update()
@@ -38,18 +37,17 @@ public class CameraMove : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, TargetRotation, 
             Time.deltaTime * 15.0f);
 
-        // Move the camera.
+        // 카메라 움직이기 [w,a,s,d]
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        moveVector = new Vector3(x, 0.0f, z) * moveSpeed;
-
-        moveY = Input.GetAxis("Elevation");
+        Vector3 dir = new Vector3(x, 0.0f, z);
+        dir.Normalize();
+        moveVector = dir * moveSpeed;
     }
 
     private void FixedUpdate()
     {
         Vector3 newVelocity = transform.TransformDirection(moveVector);
-        newVelocity.y += moveY * moveSpeed;
         rigidbody.velocity = newVelocity;
     }
 
