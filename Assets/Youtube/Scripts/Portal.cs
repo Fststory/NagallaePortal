@@ -210,9 +210,12 @@ public class Portal : MonoBehaviour
         return isOverlapping;
     }
 
+    // 포탈을 제거하는 함수
     public void RemovePortal()
     {
+        // 포탈을 비활성화 후..
         gameObject.SetActive(false);
+        // 설치되어 있지 않다고 변수에 저장
         IsPlaced = false;
     }
 }

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/M_Lobby.unity
     guid: e7afb9b3c37d32b459b2a943b7f6608b
   - enabled: 1
-    path: Assets/Scenes/M_PrototypeScene.unity
-    guid: 48e7e0cfaecc06c41b15ec3014df966e
+    path: Assets/Scenes/M_Y_PrototypeScene.unity
+    guid: d88d14c2a96601e449be168c0862cc4c
+  - enabled: 1
+    path: Assets/Scenes/YoungHo.unity
+    guid: 12e43b0ceaf016e4f9871581e2c1633b
   m_configObjects: {}
