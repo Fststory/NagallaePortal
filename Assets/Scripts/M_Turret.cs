@@ -49,7 +49,7 @@ public class M_Turret : MonoBehaviour
                         fir.transform.position = fireposition.transform.position;
                         fir.transform.rotation = fireposition.transform.rotation;
 
-                        fir.GetComponent<BulletMove>().turret = gameObject;
+                        fir.GetComponent<M_BulletMove>().turret = gameObject;
 
                         shootDelay = 0.3f;
                     }
