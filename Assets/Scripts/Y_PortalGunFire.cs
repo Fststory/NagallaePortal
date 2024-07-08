@@ -18,9 +18,9 @@ public class Y_PortalGunFire : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private GameObject redPortalPrefab;         // 빨간 포탈 프리펩
+    private GameObject redPortalPrefab;         // 빨간 포탈 프리펩 담을 변수
     [SerializeField]
-    private GameObject bluePortalPrefab;        // 파랑 포탈 프리펩
+    private GameObject bluePortalPrefab;        // 파랑 포탈 프리펩 담을 변수
     GameObject[] portals;                       // 포탈 쌍
 
 
@@ -44,22 +44,24 @@ public class Y_PortalGunFire : MonoBehaviour
         //}
         #endregion
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))                                        // 좌클릭 시
         {
-            FirePortal(0,transform.position, transform.forward, 250.0f);
+            FirePortal(0,transform.position, transform.forward, 250.0f);        // 현재 위치에서 바라보는 방향으로 최대 250m까지 가는 Ray 발사(0번 포탈 생성)
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1))                                   // 우클릭 시
         {
-            FirePortal(1, transform.position, transform.forward, 250.0f);
+            FirePortal(1, transform.position, transform.forward, 250.0f);       // 현재 위치에서 바라보는 방향으로 최대 250m까지 가는 Ray 발사(1번 포탈 생성)
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RemovePortal();
-        }
-
+        #region 포탈을 지우는 기능(미구현)
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    RemovePortal();
+        //}
+        #endregion
     }
 
-    void FirePortal(int portalId, Vector3 pos, Vector3 dir, float distance)
+    // 포탈 발사를 담당하는 함수
+    void FirePortal(int portalNum, Vector3 pos, Vector3 dir, float distance)
     {
         RaycastHit hit;
 
@@ -69,11 +71,11 @@ public class Y_PortalGunFire : MonoBehaviour
 
         if (hit.collider.CompareTag("CanPortalWall"))
         {
-            if (portalId == 0)
+            if (portalNum == 0)
             {
                 portals[0] = Instantiate(redPortalPrefab, hit.point, portalRotation);
             }
-            else if (portalId == 1)
+            else if (portalNum == 1)
             {
                 portals[1] = Instantiate(bluePortalPrefab, hit.point, portalRotation);
             }

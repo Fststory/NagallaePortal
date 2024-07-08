@@ -38,15 +38,16 @@ public class GameManager : MonoBehaviour
 
     //(7/4) 만들고 보니 아직 이걸 만들 필요가 없어서 기본적인 뼈대만 세워두고 방치중!
 
-    void ScenePortal(int num)      // 씬 이동 함수
+    void ScenePortal(int num)      // 씬 이동 기능 구현!
     {
-        // 현재 씬 인덱스를 얻은 뒤
+        // 현재 씬 인덱스(순서)를 확인한 뒤
         int currentSceneindex = SceneManager.GetActiveScene().buildIndex;
         
         // F4 ~ F6을 통해 해당 씬 불러오기
+        // F4(이전), F5(현재), F6(다음)
         SceneManager.LoadScene(currentSceneindex + num);
 
-        // 커서 원래대로 (해당 씬에서 시작할 때 커서 안보이게 설정돼 있으면 그대로 반영됨)
+        // 커서 원상복구 (만약 해당 씬에서 시작할 때 커서 안보이게 설정돼 있으면 그대로 반영됨)
         Cursor.lockState = CursorLockMode.Confined;
     }
 
