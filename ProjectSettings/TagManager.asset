@@ -7,6 +7,10 @@ TagManager:
   - smallButton
   - LabObject
   - Bullet
+  - Portal
+  - CanPortalWall
+  - RedPortal
+  - BluePortal
   layers:
   - Default
   - TransparentFX
@@ -19,7 +23,7 @@ TagManager:
   - 
   - LevelGeom
   - Portal
-  - 
+  - CanMakePortal
   - 
   - 
   - 

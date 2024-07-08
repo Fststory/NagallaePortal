@@ -22,7 +22,8 @@ public class Y_PortalGunFire : MonoBehaviour
     [SerializeField]
     private GameObject bluePortalPrefab;        // 파랑 포탈 프리펩 담을 변수
     GameObject[] portals;                       // 포탈 쌍
-
+    [SerializeField]
+    private LayerMask layer;                    // 생성 가능 구분 레이어 (기존 CanPortalWall 태그 이용 => 레이어로 구분)
 
     void Start()
     {
@@ -65,11 +66,11 @@ public class Y_PortalGunFire : MonoBehaviour
     {
         RaycastHit hit;
 
-        Physics.Raycast(pos, dir, out hit, distance);
+        Physics.Raycast(pos, dir, out hit, distance,layer);
                
-        Quaternion portalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+        Quaternion portalRotation = Quaternion.LookRotation(hit.normal);    // 방향 수정 필요!   포탈이 생성될 때 앞,오른쪽,위 방향을 정확하게 잡아줘야 됨
 
-        if (hit.collider.CompareTag("CanPortalWall"))
+        if (hit.collider != null)
         {
             if (portalNum == 0)
             {

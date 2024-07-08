@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 184152921}
   - component: {fileID: 184152920}
   - component: {fileID: 184152919}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Tag_O (1)
   m_TagString: CanPortalWall
   m_Icon: {fileID: 0}
@@ -252,6 +252,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redPortalPrefab: {fileID: 3983544645099053954, guid: 5fe898e39edf7fe48935831ed8ab20a7, type: 3}
   bluePortalPrefab: {fileID: 789590174469002168, guid: f81bb9bcd82771447bb0c42256e6fb87, type: 3}
+  layer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &214984475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +534,7 @@ GameObject:
   - component: {fileID: 613807719}
   - component: {fileID: 613807718}
   - component: {fileID: 613807717}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Tag_O
   m_TagString: CanPortalWall
   m_Icon: {fileID: 0}
@@ -1332,7 +1335,7 @@ GameObject:
   - component: {fileID: 1999444327}
   - component: {fileID: 1999444326}
   - component: {fileID: 1999444325}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Plane (1)
   m_TagString: CanPortalWall
   m_Icon: {fileID: 0}
