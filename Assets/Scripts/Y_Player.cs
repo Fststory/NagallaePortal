@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Y_Player : MonoBehaviour
 {
-    // Player의 움직임에 관한 Script 입니다.
+    // Player의 움직임, 체력에 관한 Script 입니다.
     // ㄴ [ w,a,s,d ](이동), [ space ](점프), [ ctrl ](앉기)
 
     #region PlayerMove() 변수
     // Player의 이동 속도 변수
     public float moveSpeed = 5;
-    
-    // Rigidbody 선언 및 점프력 변수
-    public Rigidbody playerBody;
+
+    // Rigidbody 선언 및 점프력, 땅 위에 있는지 변수
+    private Rigidbody playerRB;
     public float jumpForce;
-    // 발 위치, 바닥 레이어 선언;
-    public Transform feetTransform;
-    public LayerMask floorMask;
+    public bool isGround;
+    
     #endregion
 
     #region PlayerRotate() 변수
@@ -28,9 +27,14 @@ public class Y_Player : MonoBehaviour
 
     #region PlayerHealth() 변수
     // 체력 변수
-    public float currentHp = 100.0f;
-    public M_BulletMove bullet;
+    public float currentHp = 100.0f;    // 현재 체력(피해 입기 전 세팅 값: 100)
+    public M_BulletMove bullet;         // 피해를 주는 객체에서 데미지 값을 가져 옴
     #endregion
+
+    private void Start()
+    {
+        playerRB = GetComponent<Rigidbody>();           // 점프 가능 여부 판정 시 사용(OnCollisionEnter 부분)
+    }
 
 
     void Update()
@@ -40,8 +44,6 @@ public class Y_Player : MonoBehaviour
         PlayerHealth();
     }
 
-
-
     void PlayerMove()
     {
         // 플레이어의 키 입력에 따라 움직임(전후좌우)을 구현
@@ -50,7 +52,7 @@ public class Y_Player : MonoBehaviour
         Vector3 dir = new Vector3(moveX, 0, moveZ);
         dir.Normalize();
 
-        // 메인 카메라를 기준으로 방향을 변환한다. (로컬 방향 벡터)
+        // 메인 카메라를 기준으로 방향을 변환한다. (카메라가 바라보는 곳이 플레이어의 z축[앞 방향]이 된다.)
         dir = Camera.main.transform.TransformDirection(dir);
 
         dir.y = 0;
@@ -58,16 +60,12 @@ public class Y_Player : MonoBehaviour
         // p = p0 + vt
         transform.position += dir * moveSpeed * Time.deltaTime;
 
-        // [space]를 누르면 점프 할건데..
-        if (Input.GetKeyDown(KeyCode.Space))
+        // 플레이어가 땅을 밟고 있을 때 [space]를 누르면...
+        if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
-            // 만약 발이 땅에 닿아 있다면..
-            if (Physics.CheckSphere(feetTransform.position, 0.5f, floorMask))
-            {
-                playerBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
+            playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);       // 점프력만큼 점프한다.
+            isGround = false;                                                   // 땅에서 떨어짐을 표시(점프가 불가능)
         }
-
     }
 
     void PlayerRotate()
@@ -77,25 +75,30 @@ public class Y_Player : MonoBehaviour
         transform.eulerAngles = new Vector3(0, mx, 0);
     }
 
-    private void OnTriggerEnter(Collider something)                         // Player가 무언가와 충돌했을 때 호출되는 함수
+    private void OnCollisionEnter(Collision something)              // Player의 점프 가능 여부 판단/ 피해를 체력에 적용시키는 기능
     {
-        M_BulletMove bullet = something.GetComponent<M_BulletMove>();       // 충돌체가 M_BulletMove 컴포넌트를 갖고 있는지 확인
+        if (something.gameObject.CompareTag("Ground"))              // Ground 태그가 있는 물체와 충돌하면
+        {
+            isGround = true;                                        // 다시 점프할 수 있다.
+        }
 
-        if (bullet != null)                                                 // 만약 충돌체가 총알이라면..
+        M_BulletMove bullet = something.gameObject.GetComponent<M_BulletMove>();        // 충돌체가 M_BulletMove 컴포넌트를 갖고 있는지 확인
+
+        if (bullet != null)                                                             // 만약 충돌체가 총알이라면..
         {            
-            float damage = bullet.damage;                                   // M_BulletMove 총알의 데미지를 갖고 와서
-            currentHp -= damage;                                            // 현재 체력에서 깎는다.         
+            float damage = bullet.damage;                                               // M_BulletMove 총알의 데미지를 갖고 와서
+            currentHp -= damage;                                                        // 현재 체력에서 깎는다.         
         }
     }
     void PlayerHealth()
     {
-        if (currentHp < 0.0f)                                               // 만약 체력이 다 떨어지면..
+        if (currentHp < 0.0f)                   // 만약 체력이 다 떨어지면..
         {
-            Destroy(gameObject);                                            // 플레이어의 게임오브젝트를 파괴한다.
+            Destroy(gameObject);                // 플레이어의 게임오브젝트를 파괴한다.
         }
-        if (currentHp < 100.0f)                                             // 풀피가 아니면...
+        if (currentHp < 100.0f)                 // 풀피가 아니면...
         {
-            currentHp += Time.deltaTime;                                    // 체력이 조금씩 회복된다.
+            currentHp += Time.deltaTime;        // 체력이 조금씩 회복된다.
         }
     }
 }

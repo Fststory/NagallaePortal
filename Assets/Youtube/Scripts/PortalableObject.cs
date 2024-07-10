@@ -69,10 +69,10 @@ public class PortalableObject : MonoBehaviour
 
     public void SetIsInPortal(Portal inPortal, Portal outPortal, Collider wallCollider)
     {
-        this.inPortal = inPortal;
-        this.outPortal = outPortal;
+        this.inPortal = inPortal;           // 인 포탈 설정
+        this.outPortal = outPortal;         // 아웃 포탓 설정
 
-        Physics.IgnoreCollision(collider, wallCollider);
+        Physics.IgnoreCollision(collider, wallCollider);    // 현재 포탈과 상호작용하는 오브젝트와 포탈이 설치된 벽 사이의 충돌을 무시한다.(벽 뚫기)
 
         cloneObject.SetActive(false);
 

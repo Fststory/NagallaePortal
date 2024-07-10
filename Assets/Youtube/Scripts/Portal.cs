@@ -6,48 +6,48 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     [field: SerializeField]
-    public Portal OtherPortal { get; private set; }
+    public Portal OtherPortal { get; private set; }             // 접촉하는 포탈의 짝꿍 포탈
 
     [SerializeField]
-    private Renderer outlineRenderer;
+    private Renderer outlineRenderer;                           // 외곽선 렌더링 담당 변수
 
     [field: SerializeField]
-    public Color PortalColour { get; private set; }
+    public Color PortalColour { get; private set; }             // 포탈 색깔
 
     [SerializeField]
-    private LayerMask placementMask;
+    private LayerMask placementMask;                            // 설치 가능 레이어 목록
 
     [SerializeField]
-    private Transform testTransform;
+    private Transform testTransform;                            // 
 
-    private List<PortalableObject> portalObjects = new List<PortalableObject>();
-    public bool IsPlaced { get; private set; } = false;
-    private Collider wallCollider;
+    private List<PortalableObject> portalObjects = new List<PortalableObject>();        // 
+    public bool IsPlaced { get; private set; } = false;         // 설치 여부: 시작부터 설치돼 있지 않기에 false
+    private Collider wallCollider;                              // 포탈이 설치되는 벽의 콜라이더
 
     // Components.
-    public Renderer Renderer { get; private set; }
-    private new BoxCollider collider;
+    public Renderer Renderer { get; private set; }              // 포탈 렌더링 담당 변수
+    private new BoxCollider collider;                           // 포탈 콜라이더 담당 변수
 
     private void Awake()
     {
-        collider = GetComponent<BoxCollider>();
-        Renderer = GetComponent<Renderer>();
+        collider = GetComponent<BoxCollider>();                 // 박스형 콜라이더
+        Renderer = GetComponent<Renderer>();                    // 렌더러
     }
 
     private void Start()
     {
-        outlineRenderer.material.SetColor("_OutlineColour", PortalColour);
+        outlineRenderer.material.SetColor("_OutlineColour", PortalColour);      // 외곽선을 PortalColour에 담은 색으로 칠한다.
         
-        gameObject.SetActive(false);
+        gameObject.SetActive(false);        // 포탈의 초기 상태는 비활성화
     }
 
     private void Update()
     {
-        Renderer.enabled = OtherPortal.IsPlaced;
+        Renderer.enabled = OtherPortal.IsPlaced;            // 짝꿍 포탈의 설치 여부가 렌더링 여부를 책임짐
 
-        for (int i = 0; i < portalObjects.Count; ++i)
+        for (int i = 0; i < portalObjects.Count; ++i)       // 포탈 오브젝트 리스트 길이만큼 반복
         {
-            Vector3 objPos = transform.InverseTransformPoint(portalObjects[i].transform.position);
+            Vector3 objPos = transform.InverseTransformPoint(portalObjects[i].transform.position);      // 
 
             if (objPos.z > 0.0f)
             {
@@ -56,13 +56,13 @@ public class Portal : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)         // 포탈의 트리거에 other가 닿는다면..
     {
-        var obj = other.GetComponent<PortalableObject>();
-        if (obj != null)
+        var obj = other.GetComponent<PortalableObject>();           // other가 PortalableObject 컴포넌트의 보유 여부를 obj에 담는다.
+        if (obj != null)                                            // 만약 other가 PortalableObject 컴포넌트를 갖고 있다면..
         {
-            portalObjects.Add(obj);
-            obj.SetIsInPortal(this, OtherPortal, wallCollider);
+            portalObjects.Add(obj);                                 // 
+            obj.SetIsInPortal(this, OtherPortal, wallCollider);     // 
         }
     }
 

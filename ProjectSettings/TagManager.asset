@@ -8,9 +8,9 @@ TagManager:
   - LabObject
   - Bullet
   - Portal
-  - CanPortalWall
   - RedPortal
   - BluePortal
+  - Ground
   layers:
   - Default
   - TransparentFX
