@@ -16,7 +16,7 @@ public class M_Autodoor : MonoBehaviour
 
     float spd = 2.0f;
 
-    float delay = 2.0f;
+    public float delay = 2.0f;
 
 
     void Start()
