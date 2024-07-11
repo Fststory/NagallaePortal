@@ -476,12 +476,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretbullet: {fileID: 4821471729964594004, guid: b007cdbc6d1fe5b489d4cfb32c2fecfe, type: 3}
   fireposition: {fileID: 4672085515688409242}
+  spotlight: {fileID: 0}
   playercol: {fileID: 0}
   warningTime: 1
+  rotationSpeed: 3
   warning: 0
   shooting: 1
+  noshoot: 0
   shootTime: 0
   shootDelay: 0.3
+  laser: {fileID: 0}
 --- !u!65 &5311256397603521230
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -501,7 +505,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 14.244278}
+  m_Size: {x: 5, y: 1, z: 14.244278}
   m_Center: {x: 0, y: 0, z: 6.622138}
 --- !u!65 &3627102741951333714
 BoxCollider:
