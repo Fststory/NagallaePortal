@@ -19,14 +19,14 @@ public class CameraMove : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();          // 리지드바디 컴포넌트를 변수에 저장
         Cursor.lockState = CursorLockMode.Locked;       // 커서 화면 중앙 고정
 
-        TargetRotation = transform.rotation;            // 회전 정보를 변수에 저장
+        TargetRotation = transform.rotation;            // 카메라의 현재 회전 정보를 변수에 저장
     }
 
     private void Update()
     {
-        // Rotate the camera.
-        var rotation = new Vector2(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
-        var targetEuler = TargetRotation.eulerAngles + (Vector3)rotation * cameraSpeed;
+        // 카메라 회전 [마우스 이동]
+        var rotation = new Vector2(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));    // 마우스 x,y축 이동(상하좌우)을 값으로 담는다.(Vector2)
+        var targetEuler = TargetRotation.eulerAngles + (Vector3)rotation * cameraSpeed;     // 마우스 이동이 계산 & 적용된 바라보는 방향. (Vector3)
         if(targetEuler.x > 180.0f)
         {
             targetEuler.x -= 360.0f;
@@ -51,6 +51,11 @@ public class CameraMove : MonoBehaviour
         rigidbody.velocity = newVelocity;
     }
 
+
+    // 오뚜기 기능!!!
+    // 포탈 이동으로 변형된 시점의 회전을 다시 정상으로 돌리는 것 (항상 나의 위 방향이 월드 좌표에서 정해진 위의 방향이 되게끔)
+    // (땅을 밟고 있을 땐 xz평면에 평행한 방향을 정면으로 바라보지만
+    // 포탈에서 나올 때 yz평면을 발 밑에 둔다면 yz평면에 평행한 방향을 정면으로 바라보게 된다. 이때 다시 처음의 상태로 돌아가는 것)
     public void ResetTargetRotation()
     {
         TargetRotation = Quaternion.LookRotation(transform.forward, Vector3.up);

@@ -18,7 +18,7 @@ public class PortalPlacement : MonoBehaviour
 
     private void Awake()
     {
-        // CameraMove 컴포넌트 가져오기
+        // CameraMove 컴포넌트 캐싱
         cameraMove = GetComponent<CameraMove>();
     }
 
@@ -82,32 +82,32 @@ public class PortalPlacement : MonoBehaviour
             //}
             #endregion
 
-            // Orient the portal according to camera look direction and surface direction.
-            // 
-            var cameraRotation = cameraMove.TargetRotation;
-            var portalRight = cameraRotation * Vector3.right;
+            // Orient the portal according to camera look direction and surface direction.(원문)
+            // 포탈이 설치될 때 방향을 잡아준다. (같은 곳에 포탈을 생성하더라도 어디서 쐈냐에 따라 포탈의 상하좌우가 결정된다.
+            var cameraRotation = cameraMove.TargetRotation;                                         // 
+            var portalRight = cameraRotation * Vector3.right;                                       // 
             
-            if(Mathf.Abs(portalRight.x) >= Mathf.Abs(portalRight.z))
+            if(Mathf.Abs(portalRight.x) >= Mathf.Abs(portalRight.z))                                // 
             {
-                portalRight = (portalRight.x >= 0) ? Vector3.right : -Vector3.right;
+                portalRight = (portalRight.x >= 0) ? Vector3.right : -Vector3.right;                // 
             }
             else
             {
-                portalRight = (portalRight.z >= 0) ? Vector3.forward : -Vector3.forward;
+                portalRight = (portalRight.z >= 0) ? Vector3.forward : -Vector3.forward;            // 
             }
 
-            var portalForward = -hit.normal;
-            var portalUp = -Vector3.Cross(portalRight, portalForward);
+            var portalForward = -hit.normal;                                                        // 포탈의 앞은 생성되는 벽면의 법선과 반대 방향이다.(벽으로 깊숙히 들어가는 방향)
+            var portalUp = -Vector3.Cross(portalRight, portalForward);                              // 
 
-            var portalRotation = Quaternion.LookRotation(portalForward, portalUp);
+            var portalRotation = Quaternion.LookRotation(portalForward, portalUp);                  // 계산 결과를 바탕으로 포탈의 앞,위 방향을 지정한다.
             
             // Attempt to place the portal.
             // 
             bool wasPlaced = portals.Portals[portalID].PlacePortal(hit.collider, hit.point, portalRotation);
 
-            if(wasPlaced)
+            if(wasPlaced)                                           //
             {
-                crosshair.SetPortalPlaced(portalID, true);
+                crosshair.SetPortalPlaced(portalID, true);          // 
             }
         }
     }

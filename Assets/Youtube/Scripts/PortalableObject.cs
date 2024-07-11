@@ -27,12 +27,12 @@ public class PortalableObject : MonoBehaviour
         var meshFilter = cloneObject.AddComponent<MeshFilter>();            // 클론 오브젝트에 MeshFilter 컴포넌트 추가
         var meshRenderer = cloneObject.AddComponent<MeshRenderer>();        // 클론 오브젝트에 MeshRenderer 컴포넌트 추가
 
-        meshFilter.mesh = GetComponent<MeshFilter>().mesh;                  // MeshFilter의 mesh를 담는 변수
-        meshRenderer.materials = GetComponent<MeshRenderer>().materials;    // MeshRenderer의 materials를 담는 변수
-        cloneObject.transform.localScale = transform.localScale;            // 클론 오브젝트의 크기(localScale)는 본체의 크기와 같다.
+        meshFilter.mesh = GetComponent<MeshFilter>().mesh;                  // 겜오브젝의 MeshFilter의 mesh를 담는 변수
+        meshRenderer.materials = GetComponent<MeshRenderer>().materials;    // 겜오브젝의 MeshRenderer의 materials를 담는 변수
+        cloneObject.transform.localScale = transform.localScale;            // 클론 오브젝트의 크기(localScale)는 겜오브젝 본체의 크기와 같다.
 
-        rigidbody = GetComponent<Rigidbody>();                              // 리지드바디 컴포넌트 저장
-        collider = GetComponent<Collider>();                                // 콜라이더 컴포넌트 저장
+        rigidbody = GetComponent<Rigidbody>();                              // 겜오브젝의 리지드바디 컴포넌트 캐싱
+        collider = GetComponent<Collider>();                                // 겜오브젝의 콜라이더 컴포넌트 캐싱
     }
 
     private void LateUpdate()
@@ -72,7 +72,7 @@ public class PortalableObject : MonoBehaviour
         this.inPortal = inPortal;           // 인 포탈 설정
         this.outPortal = outPortal;         // 아웃 포탓 설정
 
-        Physics.IgnoreCollision(collider, wallCollider);    // 현재 포탈과 상호작용하는 오브젝트와 포탈이 설치된 벽 사이의 충돌을 무시한다.(벽 뚫기)
+        Physics.IgnoreCollision(collider, wallCollider);    // 겜오브젝과 포탈이 설치된 벽 사이의 충돌을 무시한다.(벽 뚫기)
 
         cloneObject.SetActive(false);
 
@@ -81,7 +81,7 @@ public class PortalableObject : MonoBehaviour
 
     public void ExitPortal(Collider wallCollider)
     {
-        Physics.IgnoreCollision(collider, wallCollider, false);
+        Physics.IgnoreCollision(collider, wallCollider, false);     // 겜오브젝과 포탈이 설치된 벽 사이의 충돌 무시를 해제한다.(벽 뚫기 불가)
         --inPortalCount;
 
         if (inPortalCount == 0)

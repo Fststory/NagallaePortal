@@ -27,7 +27,12 @@ public class Y_PortalGunFire : MonoBehaviour
 
     void Start()
     {
-        
+        #region 3항 연산자
+        /* 받을 변수 = 조건식 ? 참일 때 : 거짓일 때
+        조건식이 참이면 받을 변수에 참일 때의 값을, 조건식이 거짓이면 받을 변수에 거짓일 때의 값을 반환한다.
+        string result = 35 > 15 ? "앞이 더 크다" : "뒤가 더 크다";
+        */
+        #endregion
     }
 
     void Update()
@@ -80,8 +85,7 @@ public class Y_PortalGunFire : MonoBehaviour
             {
                 portals[1] = Instantiate(bluePortalPrefab, hit.point, portalRotation);
             }
-        }
-        
+        }        
     }
 
     void RemovePortal()

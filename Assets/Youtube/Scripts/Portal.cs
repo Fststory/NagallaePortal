@@ -58,22 +58,22 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)         // 포탈의 트리거에 other가 닿는다면..
     {
-        var obj = other.GetComponent<PortalableObject>();           // other가 PortalableObject 컴포넌트의 보유 여부를 obj에 담는다.
+        var obj = other.GetComponent<PortalableObject>();           // obj에 other의 PortalableObject 컴포넌트를 캐싱
         if (obj != null)                                            // 만약 other가 PortalableObject 컴포넌트를 갖고 있다면..
         {
-            portalObjects.Add(obj);                                 // 
-            obj.SetIsInPortal(this, OtherPortal, wallCollider);     // 
+            portalObjects.Add(obj);                                 // portalableObjects 리스트에 obj를 추가한다.
+            obj.SetIsInPortal(this, OtherPortal, wallCollider);     // 현재 맞닿아있는 포탈이 inPortal, 짝꿍이 outPortal이 된다. other과 포탈 사이의 충돌을 무시한다.
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)          // other이 포탈의 트리거에서 벗어나면..
     {
-        var obj = other.GetComponent<PortalableObject>();
+        var obj = other.GetComponent<PortalableObject>();           // obj에 other의 PortalableObject 컴포넌트를 캐싱
 
-        if(portalObjects.Contains(obj))
+        if(portalObjects.Contains(obj))                             // 만약 other가 PortalableObject 컴포넌트를 갖고 있다면
         {
-            portalObjects.Remove(obj);
-            obj.ExitPortal(wallCollider);
+            portalObjects.Remove(obj);                              // portalableObjects 리스트에서 obj를 제거한다.
+            obj.ExitPortal(wallCollider);                           // other과 포탈 사이의 충돌을 다시 활성화한다.
         }
     }
 
@@ -100,7 +100,8 @@ public class Portal : MonoBehaviour
         return false;
     }
 
-    // Ensure the portal cannot extend past the edge of a surface.
+    // Ensure the portal cannot extend past the edge of a surface.(원문)
+    // 포탈이 벽의 경계를 벗어나지 않도록 함.
     private void FixOverhangs()
     {
         var testPoints = new List<Vector3>
@@ -137,7 +138,8 @@ public class Portal : MonoBehaviour
         }
     }
 
-    // Ensure the portal cannot intersect a section of wall.
+    // Ensure the portal cannot intersect a section of wall.(원문)
+    // 포탈이 벽에 끼지 않게 함
     private void FixIntersects()
     {
         var testDirs = new List<Vector3>
@@ -165,7 +167,8 @@ public class Portal : MonoBehaviour
         }
     }
 
-    // Once positioning has taken place, ensure the portal isn't intersecting anything.
+    // Once positioning has taken place, ensure the portal isn't intersecting anything.(원문)
+    // 포탈이 다른 물체와 겹치거나 충돌하지 않게 해줌
     private bool CheckOverlap()
     {
         var checkExtents = new Vector3(0.9f, 1.9f, 0.05f);
@@ -182,7 +185,8 @@ public class Portal : MonoBehaviour
             testTransform.TransformVector(new Vector3(0.0f, 0.0f, 0.2f))
         };
 
-        // Ensure the portal does not intersect walls.
+        // Ensure the portal does not intersect walls.(원문)
+        // 포탈이 벽과 겹치지 않도록 해줌
         var intersections = Physics.OverlapBox(checkPositions[0], checkExtents, testTransform.rotation, placementMask);
 
         if(intersections.Length > 1)
@@ -191,14 +195,16 @@ public class Portal : MonoBehaviour
         }
         else if(intersections.Length == 1) 
         {
-            // We are allowed to intersect the old portal position.
+            // We are allowed to intersect the old portal position.(원문)
+            // 이전에 설치한 포탈과는 교차할 수 있다.(어차피 새로 생성되면서 이전의 포탈은 사라질 테니까)
             if (intersections[0] != collider)
             {
                 return false;
             }
         }
 
-        // Ensure the portal corners overlap a surface.
+        // Ensure the portal corners overlap a surface.(원문)
+        // 벽 위에 포탈이 생성될 수 있게 해줌
         bool isOverlapping = true;
 
         for(int i = 1; i < checkPositions.Length - 1; ++i)
@@ -210,7 +216,7 @@ public class Portal : MonoBehaviour
         return isOverlapping;
     }
 
-    // 포탈을 제거하는 함수
+    // 포탈을 제거하는 함수 (사용하지 않는 듯? 여기 말고 함수 선언해놓은 거 빼곤 안 보임)
     public void RemovePortal()
     {
         // 포탈을 비활성화 후..

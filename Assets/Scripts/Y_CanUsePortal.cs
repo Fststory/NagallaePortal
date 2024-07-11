@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Y_MovingWithPortal : MonoBehaviour
+public class Y_CanUsePortal : MonoBehaviour
 {
     // 이 스크립트를 가진 게임오브젝트는 포탈 간 이동이 가능합니다.
 
