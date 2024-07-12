@@ -13,10 +13,14 @@ public class M_Turret : MonoBehaviour
     public GameObject turretbullet;
     public GameObject fireposition;
     public GameObject spotlight;
+    public GameObject Particle;
     public Collider playercol;
 
     public float warningTime = 1.0f;
     public float rotationSpeed = 3.0f;
+
+    public float rotX;
+    public float rotZ;
 
     public bool warning;
     public bool shooting;
@@ -34,22 +38,32 @@ public class M_Turret : MonoBehaviour
 
     void Start()
     {
+        //파티클 설정
+        Particle.SetActive(false);
+
         //챗 GPT
         if (playercol.gameObject != null)
         {
             playerTransform = playercol.gameObject.transform;
         }
         // 자식 레이저의 원래 회전 각도 저장
-        originalRotation = laser.localRotation;
+        originalRotation = laser.rotation;
     }
 
     void Update()
     {
+        //터렛의 x축과 z축 각도를 계속 측정한다.
+        rotX = gameObject.transform.eulerAngles.x; //오일러 앵글!!!!
+        rotZ = gameObject.transform.eulerAngles.z;
         
-        if (transform.parent == null) //부모 컴포넌트가 없을 때 (플레이어가 안 집으면) 활성화 상태로 친다.
+
+        if ((MathF.Abs(rotX) > 300 || Mathf.Abs(rotX) < 60) && (Mathf.Abs(rotZ) > 300 || Mathf.Abs(rotZ) < 60) ) //특정 각도 안일때... 활성화 상태로 친다.
+            //세워진 기준 60도를 초과일 때. (즉 300도 이상이거나 60도 이하여야 한다... 그래서 이런 기괴한)
+            //[프로토는 이거 씀] if (transform.parent == null) //부모 컴포넌트가 없을 때 (플레이어가 안 집으면) 활성화 상태로 친다.
         {
             if (shooting) // 사격 중인가?
             {
+                Particle.SetActive(true); //사격할거면 파티클 on
                 if (shootTime > 0) //0.3초마다 총알 하나씩 사격하도록 하는 중
                 {
                     shootTime -= Time.deltaTime;
@@ -73,16 +87,19 @@ public class M_Turret : MonoBehaviour
                 else
                 {
                     shooting = false; //사격 종료
+                    Particle.SetActive(true); //파티클 종료
                     warning = false; //사격이 완전히 끝났으니 경고도 종료
                     warningTime = 1.0f; //사격이 완전히 끝났으니 경고시간 재설정
                 }
             }
         }
-        else //플레이어가 집어버린 순간
+        else //특정 각도 밖일때.
         {
             spotlight.SetActive(false);
             noshoot = true;
         }
+
+        
 
 
         //레이저 따라가게 하기
@@ -178,7 +195,7 @@ public class M_Turret : MonoBehaviour
         Quaternion clampedRotation = ClampRotation(originalRotation);
 
         // 현재 회전에서 원래 회전으로 점진적으로 회전
-        laser.localRotation = Quaternion.Slerp(laser.localRotation, clampedRotation, rotationSpeed * Time.deltaTime);
+        laser.rotation = Quaternion.Slerp(laser.rotation, clampedRotation, rotationSpeed * Time.deltaTime);
     }
 
     Quaternion ClampRotation(Quaternion targetRotation)

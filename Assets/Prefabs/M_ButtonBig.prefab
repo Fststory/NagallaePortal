@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 6797374577850754356}
   - component: {fileID: 3896203000578724500}
   - component: {fileID: 1832255895599268891}
-  - component: {fileID: 4963327532512769897}
   m_Layer: 0
   m_Name: BigButtonPush
   m_TagString: Untagged
@@ -115,27 +114,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4963327532512769897
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4337691092896923517}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: -0.9, y: 2, z: -0.9}
-  m_Center: {x: 0.000000059604645, y: -0.00000008940697, z: -0.00000008940697}
 --- !u!1 &7078302133222753613
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,9 +248,12 @@ MonoBehaviour:
   leftClose: {fileID: 0}
   rightClose: {fileID: 0}
   buttonPart: {fileID: 0}
-  buttonup: {fileID: 0}
-  buttondown: {fileID: 0}
+  buttonDeactive: {fileID: 0}
+  buttonActive: {fileID: 0}
   spd: 3
+  guideline: {fileID: 0}
+  activate: {fileID: 0}
+  deactivate: {fileID: 0}
 --- !u!1 &9091875458245142401
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +265,6 @@ GameObject:
   - component: {fileID: 2675846337441837189}
   - component: {fileID: 635041319450367747}
   - component: {fileID: 1602118113299436469}
-  - component: {fileID: 8772266167110137563}
   m_Layer: 0
   m_Name: BigButtonBody
   m_TagString: Untagged
@@ -357,24 +337,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8772266167110137563
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9091875458245142401}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
