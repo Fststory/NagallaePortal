@@ -34,7 +34,7 @@ public class M_GrabMe : MonoBehaviour
 
         if (imGrapping)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetKeyDown(KeyCode.E)) //[7/12]클릭에서 상호작용 E키로 변경!!
             {
                 imGrapping = false;
                 grabObj.transform.SetParent(null); //부모 컴포넌트 해제
@@ -90,7 +90,7 @@ public class M_GrabMe : MonoBehaviour
         {
             detec = true;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 grabObj = (GameObject)other.gameObject; //게임오브젝트 변수에 추가 (왜안되냐?)
 

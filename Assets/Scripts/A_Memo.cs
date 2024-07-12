@@ -32,14 +32,15 @@ public class A_Memo : MonoBehaviour
 
     <민경>
 
-    Autodoor : 
-    BulletMove : 
-    DoorButtonBig :
-    DoorButtonBig_another :
-    DoorButtonSmall :
-    GrabMe : 
-    LobbyUI :
-    Turret :
+    Autodoor : 자동문. Delay 시간 뒤에 문이 열린다. (door - 문 GameObject / open - Lerp Transform)
+    BulletMove : 터렛 총알 발사 (한쪽 방향으로 끝없이 이동하고 시간이 지난 뒤 Distroy까지 똑같음)
+    DoorButtonBig : 타이머를 이용한 버튼반응형 문열기 (말 하도 안들어서 갖다버릴겁니다)
+    DoorButtonBig_another : Lerp를 이용한 문열기(프로토타입에 얘 썼습니다)
+    DoorButtonSmall : 작은 버튼 반응형 문열기(갖다버릴겁니다)
+    M_ButtonSmallspcube: 큐브 스폰을 위한 새로운 버튼 스크립트입니다.
+    GrabMe : 물건 집기 (grab OBJ에 잡을 게임오브제, Point에 플레이어 자식오브젝트로 만들어둔 Transform)
+    LobbyUI : 로비 UI
+    Turret : 터렛의 플레이어 인식, 총알 발사할 시간 등
 
 
 
