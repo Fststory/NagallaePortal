@@ -928,6 +928,7 @@ MonoBehaviour:
   rightOpen: {fileID: 227869874}
   leftClose: {fileID: 0}
   rightClose: {fileID: 0}
+  delay: 2
 --- !u!1 &477654893 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5062619288900203850, guid: 8c067bff68cea934a966baf55647fc6c, type: 3}
@@ -1261,9 +1262,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: laser
+      value: 
+      objectReference: {fileID: 584725622}
+    - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: Particle
+      value: 
+      objectReference: {fileID: 584725623}
+    - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: shooting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1116372019}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -1325,6 +1338,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+--- !u!4 &584725622 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2400717331897388552, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+  m_PrefabInstance: {fileID: 584725621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &584725623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6166048819699883465, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+  m_PrefabInstance: {fileID: 584725621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &592389320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2853,13 +2876,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  playerBody: {fileID: 0}
   jumpForce: 0
-  feetTransform: {fileID: 0}
-  floorMask:
-    serializedVersion: 2
-    m_Bits: 0
+  isGround: 0
   rotSpeed: 200
+  currentHp: 100
+  bullet: {fileID: 0}
 --- !u!54 &1116372017
 Rigidbody:
   m_ObjectHideFlags: 0
