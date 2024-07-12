@@ -431,6 +431,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 171014273}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &171178331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6166048819699883465, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+  m_PrefabInstance: {fileID: 584725621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &175748636
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +709,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redPortalPrefab: {fileID: 0}
   bluePortalPrefab: {fileID: 0}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &214984475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +973,7 @@ MonoBehaviour:
   rightOpen: {fileID: 227869874}
   leftClose: {fileID: 0}
   rightClose: {fileID: 0}
+  delay: 2
 --- !u!1 &477654893 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5062619288900203850, guid: 8c067bff68cea934a966baf55647fc6c, type: 3}
@@ -1298,9 +1307,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: laser
+      value: 
+      objectReference: {fileID: 1564025470}
+    - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: Particle
+      value: 
+      objectReference: {fileID: 171178331}
+    - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: shooting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1738311227}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -3690,6 +3711,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1724048047150819210, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
   m_PrefabInstance: {fileID: 584725621}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1564025470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2400717331897388552, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+  m_PrefabInstance: {fileID: 584725621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1584394259 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4672085515688409242, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
@@ -4106,7 +4132,7 @@ Transform:
   m_GameObject: {fileID: 1738311215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.28, z: -8.49}
+  m_LocalPosition: {x: 0, y: 2.28, z: -4.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4154,12 +4180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  playerBody: {fileID: 1738311222}
   jumpForce: 5
-  feetTransform: {fileID: 1460293016}
-  floorMask:
-    serializedVersion: 2
-    m_Bits: 1
+  isGround: 0
   rotSpeed: 500
   currentHp: 100
   bullet: {fileID: 0}

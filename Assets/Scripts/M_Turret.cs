@@ -87,7 +87,7 @@ public class M_Turret : MonoBehaviour
                 else
                 {
                     shooting = false; //사격 종료
-                    Particle.SetActive(true); //파티클 종료
+                    Particle.SetActive(false); //파티클 종료
                     warning = false; //사격이 완전히 끝났으니 경고도 종료
                     warningTime = 1.0f; //사격이 완전히 끝났으니 경고시간 재설정
                 }
