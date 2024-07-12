@@ -34,7 +34,7 @@ public class M_GrabMe : MonoBehaviour
 
         if (imGrapping)
         {
-            if (Input.GetKeyDown(KeyCode.E)) //[7/12]클릭에서 상호작용 E키로 변경!!
+            if (Input.GetKeyDown(KeyCode.R)) //[7/12]클릭에서 상호작용 E-R키로 변경!!
             {
                 imGrapping = false;
                 grabObj.transform.SetParent(null); //부모 컴포넌트 해제
