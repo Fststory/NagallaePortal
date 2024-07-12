@@ -79,25 +79,25 @@ public class Portal : MonoBehaviour
 
     public bool PlacePortal(Collider wallCollider, Vector3 pos, Quaternion rot)
     {
-        testTransform.position = pos;
-        testTransform.rotation = rot;
-        testTransform.position -= testTransform.forward * 0.001f;
+        testTransform.position = pos;                                   // pos에 들어온 위치를 포지션으로 저장
+        testTransform.rotation = rot;                                   // rot에 들어온 회전을 로테이션으로 저장
+        testTransform.position -= testTransform.forward * 0.001f;       // 벽에서 살짝 튀어 나오게
 
-        FixOverhangs();
-        FixIntersects();
+        FixOverhangs();                 // 포탈이 벽의 경계(모서리)를 벗어나지 않도록 함.
+        FixIntersects();                // 
 
-        if (CheckOverlap())
+        if (CheckOverlap())             // 
         {
-            this.wallCollider = wallCollider;
-            transform.position = testTransform.position;
-            transform.rotation = testTransform.rotation;
+            this.wallCollider = wallCollider;               // 포탈의 콜라이더를 포탈이 설치되는 벽의 콜라이더로 지정
+            transform.position = testTransform.position;    // 
+            transform.rotation = testTransform.rotation;    // 
 
-            gameObject.SetActive(true);
-            IsPlaced = true;
-            return true;
+            gameObject.SetActive(true);                     // 포탈을 활성화
+            IsPlaced = true;                                // IsPlaced를 true로 설정
+            return true;                                    // true를 반환하며 종료
         }
 
-        return false;
+        return false;                   // false를 반환하며 종료
     }
 
     // Ensure the portal cannot extend past the edge of a surface.(원문)

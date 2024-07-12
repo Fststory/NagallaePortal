@@ -40,6 +40,7 @@ public class Y_Player : MonoBehaviour
     void Update()
     {
         PlayerMove();
+        PlayerJump();
         PlayerRotate();
         PlayerHealth();
     }
@@ -58,8 +59,11 @@ public class Y_Player : MonoBehaviour
         dir.y = 0;
 
         // p = p0 + vt
-        transform.position += dir * moveSpeed * Time.deltaTime;
+        transform.position += dir * moveSpeed * Time.deltaTime;        
+    }
 
+    void PlayerJump()
+    {
         // 플레이어가 땅을 밟고 있을 때 [space]를 누르면...
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
