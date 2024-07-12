@@ -27,8 +27,8 @@ public class PortalableObject : MonoBehaviour
         var meshFilter = cloneObject.AddComponent<MeshFilter>();            // 클론 오브젝트에 MeshFilter 컴포넌트 추가
         var meshRenderer = cloneObject.AddComponent<MeshRenderer>();        // 클론 오브젝트에 MeshRenderer 컴포넌트 추가
 
-        meshFilter.mesh = GetComponent<MeshFilter>().mesh;                  // 겜오브젝의 MeshFilter의 mesh를 담는 변수
-        meshRenderer.materials = GetComponent<MeshRenderer>().materials;    // 겜오브젝의 MeshRenderer의 materials를 담는 변수
+        meshFilter.mesh = GetComponent<MeshFilter>().mesh;                  // 겜오브젝의 MeshFilter의 mesh 캐싱
+        meshRenderer.materials = GetComponent<MeshRenderer>().materials;    // 겜오브젝의 MeshRenderer의 materials 캐싱
         cloneObject.transform.localScale = transform.localScale;            // 클론 오브젝트의 크기(localScale)는 겜오브젝 본체의 크기와 같다.
 
         rigidbody = GetComponent<Rigidbody>();                              // 겜오브젝의 리지드바디 컴포넌트 캐싱
@@ -92,8 +92,8 @@ public class PortalableObject : MonoBehaviour
 
     public virtual void Warp()
     {
-        var inTransform = inPortal.transform;
-        var outTransform = outPortal.transform;
+        var inTransform = inPortal.transform;                       // 인포탈의 트랜스폼을 담는 변수(inTransform)
+        var outTransform = outPortal.transform;                     // 아웃포탈의 트랜스폼을 담는 변수(outTransform)
 
         // Update position of object.
         Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);

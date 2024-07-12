@@ -16,10 +16,10 @@ public class CameraMove : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();          // 리지드바디 컴포넌트를 변수에 저장
+        rigidbody = GetComponent<Rigidbody>();          // 리지드바디 컴포넌트 캐싱
         Cursor.lockState = CursorLockMode.Locked;       // 커서 화면 중앙 고정
 
-        TargetRotation = transform.rotation;            // 카메라의 현재 회전 정보를 변수에 저장
+        TargetRotation = transform.rotation;            // 카메라의 현재 회전 쿼터니언을 변수(TargetRotation)에 저장
     }
 
     private void Update()
@@ -52,7 +52,7 @@ public class CameraMove : MonoBehaviour
     }
 
 
-    // 오뚜기 기능!!!
+    // 오뚝이 기능!!!
     // 포탈 이동으로 변형된 시점의 회전을 다시 정상으로 돌리는 것 (항상 나의 위 방향이 월드 좌표에서 정해진 위의 방향이 되게끔)
     // (땅을 밟고 있을 땐 xz평면에 평행한 방향을 정면으로 바라보지만
     // 포탈에서 나올 때 yz평면을 발 밑에 둔다면 yz평면에 평행한 방향을 정면으로 바라보게 된다. 이때 다시 처음의 상태로 돌아가는 것)
