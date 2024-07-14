@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7d04dab3eb84fc4d84c446dac64de77, type: 2}
+  - {fileID: 2100000, guid: 858986b42eca6334ca10c8fafbdd4077, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OtherPortal>k__BackingField: {fileID: 7768455697606141965}
   outlineRenderer: {fileID: 5722789122968243622}
-  <PortalColour>k__BackingField: {r: 0, g: 0.09019608, b: 1, a: 0}
+  <PortalColour>k__BackingField: {r: 0, g: 0.09019608, b: 1, a: 1}
   placementMask:
     serializedVersion: 2
     m_Bits: 3072
@@ -266,7 +266,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1efb01fb612cc344eae3e8816eb53ad6, type: 2}
+  - {fileID: 2100000, guid: aef169d1fd9f64645aa706c5d0aa9c27, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -448,7 +448,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7d04dab3eb84fc4d84c446dac64de77, type: 2}
+  - {fileID: 2100000, guid: 858986b42eca6334ca10c8fafbdd4077, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OtherPortal>k__BackingField: {fileID: 6918711654785795371}
   outlineRenderer: {fileID: 2188860484728775074}
-  <PortalColour>k__BackingField: {r: 1, g: 0.44313726, b: 0, a: 0}
+  <PortalColour>k__BackingField: {r: 1, g: 0.44313726, b: 0, a: 1}
   placementMask:
     serializedVersion: 2
     m_Bits: 3072
@@ -571,7 +571,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1efb01fb612cc344eae3e8816eb53ad6, type: 2}
+  - {fileID: 2100000, guid: aef169d1fd9f64645aa706c5d0aa9c27, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

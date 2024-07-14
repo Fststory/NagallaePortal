@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RecursivePortalMask
+  m_Name: Y_RecursivePortalMask
   m_Shader: {fileID: 4800000, guid: dd8e3f40d61ff1d4d8146fd5c739a5cf, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
