@@ -5,114 +5,131 @@ using UnityEngine.UI;
 
 public class M_GrabMe : MonoBehaviour
 {
-    public GameObject grabObj;
-    public Transform PlayerGrabPoint;
+    #region 그랩 구버전(~7/14)
+    //public GameObject grabObj;
+    //public Transform PlayerGrabPoint;
 
-    public bool detec;
+    //public bool detec;
 
-    public bool imGrapping;
-
-    #region 챗지피티 긁어오기: 페이드인 페이드아웃
-    //public GameObject panel; // 패널 오브젝트
-    //public float fadeDuration = 1f; // 페이드 지속 시간
-    //private Image panelImage;
+    //public bool imGrapping;
     #endregion
+
+    public Transform hand; // 아이템을 잡는 위치(플레이어의 손 위치)
+    public float grabRange = 2.0f; // 아이템을 잡을 수 있는 거리
+    private Transform grabbedObject; // 현재 잡고 있는 아이템의 Transform
+    private bool isGrabbing = false; // 아이템을 잡고 있는지 여부
+    private Rigidbody grabbedRigidbody; // 잡힌 아이템의 Rigidbody
+    private Camera mainCamera; // Main Camera의 참조
 
     void Start()
     {
-        #region 챗지피티 긁어오기: 페이드인 페이드아웃
-        //if (panel != null)
-        //{
-        //    panelImage = panel.GetComponent<Image>();
-        //}
-        #endregion
+        mainCamera = Camera.main; // Main Camera의 참조를 가져옴
     }
 
     void Update()
     {
-        
-
-        if (imGrapping)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.R)) //[7/12]클릭에서 상호작용 E-R키로 변경!!
+            if (isGrabbing)
             {
-                imGrapping = false;
-                grabObj.transform.SetParent(null); //부모 컴포넌트 해제
-                Rigidbody rb = grabObj.GetComponent<Rigidbody>();
-                rb.useGravity = true;
-
-                //gameObject.AddComponent<Rigidbody>();
-
+                // 아이템을 떨어뜨린다
+                DropItem();
+            }
+            else
+            {
+                // 아이템을 잡는다
+                TryGrabItem();
             }
         }
     }
-
-    #region 챗지피티 긁어오기: 페이드인 페이드아웃
-    //void OnTriggerEnter(Collider other)
+    #region 그랩 구버전(~7/14)
+    //if (imGrapping)
     //{
-    //    if (other.gameObject.tag == "Bullet") // 플레이어와 충돌했을 때만 실행
+    //    if (Input.GetKeyDown(KeyCode.R)) //[7/12]클릭에서 상호작용 E-R키로 변경!!
     //    {
-    //        print("충돌!");
-    //        StartCoroutine(FadeInAndOut());
+    //        imGrapping = false;
+    //        grabObj.transform.SetParent(null); //부모 컴포넌트 해제
+    //        Rigidbody rb = grabObj.GetComponent<Rigidbody>();
+    //        rb.useGravity = true;
+
+    //        //gameObject.AddComponent<Rigidbody>();
+
     //    }
-    //}
-
-    //IEnumerator FadeInAndOut()
-    //{
-    //    // 페이드 인
-    //    yield return StartCoroutine(Fade(0f, 1f));
-
-    //    // 잠시 대기
-    //    yield return new WaitForSeconds(0.5f);
-
-    //    // 페이드 아웃
-    //    yield return StartCoroutine(Fade(1f, 0f));
-    //}
-    //IEnumerator Fade(float startAlpha, float endAlpha)
-    //{
-    //    float elapsedTime = 0f;
-
-    //    while (elapsedTime < fadeDuration)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
-    //        panelImage.color = new Color(panelImage.color.r, panelImage.color.g, panelImage.color.b, alpha);
-    //        yield return null;
-    //    }
-
-    //    panelImage.color = new Color(panelImage.color.r, panelImage.color.g, panelImage.color.b, endAlpha);
     //}
     #endregion
 
-    private void OnTriggerStay(Collider other)
+    void TryGrabItem()
     {
-        if (other.gameObject.tag == "LabObject")
+        RaycastHit hit;
+        Vector3 rayOrigin = mainCamera.transform.position;
+        Vector3 rayDirection = mainCamera.transform.forward;
+        Debug.DrawRay(rayOrigin, rayDirection * grabRange, Color.green, 1.0f); // 디버그용 Ray 그리기
+
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, grabRange))
         {
-            detec = true;
+            Debug.Log("Raycast hit: " + hit.collider.gameObject.name); // 디버그 메시지
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (hit.collider != null && hit.collider.CompareTag("LabObject"))
             {
-                grabObj = (GameObject)other.gameObject; //게임오브젝트 변수에 추가 (왜안되냐?)
-
-                grabObj.transform.position = PlayerGrabPoint.position;
-                //grabObj.transform.SetParent(gameObject.transform); //부모 컴포넌트 지정
-                grabObj.transform.SetParent(PlayerGrabPoint);        //ㄴ7.7 부모 컴포넌트 변경
-
-                Rigidbody rb = grabObj.GetComponent<Rigidbody>();
-                rb.useGravity = false;
-
-                //Destroy(rb);
-
-                imGrapping = true;
+                // 아이템을 잡는다
+                grabbedObject = hit.transform;
+                grabbedRigidbody = grabbedObject.GetComponent<Rigidbody>();
+                if (grabbedRigidbody != null)
+                {
+                    grabbedRigidbody.isKinematic = true; // 물리적 상호작용을 비활성화
+                    grabbedObject.SetParent(hand); // 아이템을 플레이어의 손 위치로 설정
+                    grabbedObject.localPosition = Vector3.zero; // 손 위치에 정확히 배치
+                    isGrabbing = true;
+                }
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void DropItem()
     {
-        if (other.gameObject.tag == "LabObject")
+        if (grabbedObject != null)
         {
-            detec=false;
+            grabbedObject.SetParent(null); // 부모 관계 해제
+            grabbedRigidbody.isKinematic = false; // 물리적 상호작용을 활성화
+            grabbedObject = null;
+            grabbedRigidbody = null;
         }
+        isGrabbing = false;
     }
+
 }
+
+    #region 그랩 구버전(~7/14)
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.tag == "LabObject")
+    //    {
+    //        detec = true;
+
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            grabObj = (GameObject)other.gameObject; //게임오브젝트 변수에 추가 (왜안되냐?)
+
+    //            grabObj.transform.position = PlayerGrabPoint.position;
+    //            //grabObj.transform.SetParent(gameObject.transform); //부모 컴포넌트 지정
+    //            grabObj.transform.SetParent(PlayerGrabPoint);        //ㄴ7.7 부모 컴포넌트 변경
+
+    //            Rigidbody rb = grabObj.GetComponent<Rigidbody>();
+    //            rb.useGravity = false;
+
+    //            //Destroy(rb);
+
+    //            imGrapping = true;
+    //        }
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.tag == "LabObject")
+    //    {
+    //        detec=false;
+    //    }
+    //}
+    #endregion
+

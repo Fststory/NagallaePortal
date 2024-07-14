@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/M_Lobby.unity
     guid: e7afb9b3c37d32b459b2a943b7f6608b
   - enabled: 1
-    path: Assets/Scenes/M_Y_PrototypeScene.unity
-    guid: d88d14c2a96601e449be168c0862cc4c
+    path: Assets/Scenes/LAB16.unity
+    guid: b3fa360a1c2797d42a41cb1b20f6582a
   - enabled: 1
     path: Assets/Scenes/YoungHo.unity
     guid: 12e43b0ceaf016e4f9871581e2c1633b
+  - enabled: 1
+    path: Assets/Scenes/M_Y_PrototypeScene.unity
+    guid: d88d14c2a96601e449be168c0862cc4c
   m_configObjects: {}

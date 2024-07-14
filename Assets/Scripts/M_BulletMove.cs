@@ -35,4 +35,12 @@ public class M_BulletMove : MonoBehaviour
 
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Player") //플레이어가 맞았을 때...
+        {
+            GameManager.gm.AddDamage(1); //게임매니저에서 데미지 1 깎음
+            Destroy(gameObject);
+        }
+    }
 }
