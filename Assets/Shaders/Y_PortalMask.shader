@@ -1,4 +1,4 @@
-﻿Shader "Portals/PortalMask"
+﻿Shader "Y_Portals/Y_PortalMask"
 {
     Properties
     {
@@ -10,7 +10,7 @@
 		{ 
 			"RenderType" = "Opaque"
 			"Queue" = "Geometry"
-			"RenderPipeline" = "UniversalPipeline"
+			// "RenderPipeline" = "UniversalPipeline"
 		}
 
 		HLSLINCLUDE

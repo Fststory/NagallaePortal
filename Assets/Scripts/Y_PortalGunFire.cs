@@ -29,15 +29,15 @@ public class Y_PortalGunFire : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private Y_PortalPair portals;             // 
+    private Y_PortalPair portals;             // 포탈 쌍 
 
     [SerializeField]
     private LayerMask layer;            // 포탈 생성 가능 유무를 구분할 레이어
 
     [SerializeField]
-    private Crosshair crosshair;            //
+    private Y_Crosshair crosshair;            // 포탈 설치 유무를 전달받을 크로스헤어
 
-    private Y_CamRotate cameraMove;          //
+    private Y_CamRotate cameraMove;          // 
 
     private void Awake()
     {
@@ -47,7 +47,7 @@ public class Y_PortalGunFire : MonoBehaviour
 
     void Start()
     {
-        #region 3항 연산자
+        #region 3항 연산자 (강사님께 배움)
         /* 받을 변수 = 조건식 ? 참일 때 : 거짓일 때
         조건식이 참이면 받을 변수에 참일 때의 값을, 조건식이 거짓이면 받을 변수에 거짓일 때의 값을 반환한다.
         string result = 35 > 15 ? "앞이 더 크다" : "뒤가 더 크다";

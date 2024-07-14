@@ -1,4 +1,4 @@
-﻿Shader "Portals/Outline"
+﻿Shader "Y_Portals/Y_Outline"
 {
     Properties
     {
@@ -11,7 +11,7 @@
 		{ 
 			"RenderType" = "Opaque" 
 			"Queue" = "Geometry+2"
-			"RenderPipeline" = "UniversalPipeline"
+			// "RenderPipeline" = "UniversalPipeline"
 		}
 
 		HLSLINCLUDE

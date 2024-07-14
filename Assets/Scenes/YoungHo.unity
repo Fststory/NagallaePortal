@@ -480,6 +480,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d521cdfbd8d7203419c9d7f11bd5d9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &506585009 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1708241585945673485, guid: e66c1a71d22ee1447a40b8d5e82c2ec7, type: 3}
+  m_PrefabInstance: {fileID: 1509369501}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5577f687ed2637458e1ba7034be3927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &588390864
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +911,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1708241585945673485, guid: e66c1a71d22ee1447a40b8d5e82c2ec7, type: 3}
+      propertyPath: portalPair
+      value: 
+      objectReference: {fileID: 1904579341}
     - target: {fileID: 2164432501932773538, guid: e66c1a71d22ee1447a40b8d5e82c2ec7, type: 3}
       propertyPath: m_Name
       value: Y_PortalCanvas
@@ -999,7 +1014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575258476}
   m_Layer: 0
-  m_Name: Test_Wall_Layer_l_CanMakePortal
+  m_Name: Test_Wall_Layer__CanMakePortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1092,6 +1107,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 514ad39a88d297740a22c15825a145fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1936936124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7768455697606141965, guid: 34603bc5d4e22e443aec55b80025db65, type: 3}
+  m_PrefabInstance: {fileID: 1724728440}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f602ae5c5451c4594e6873a8fb961e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1999444324
@@ -1244,6 +1270,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040cf655feec8e24c805b76f37206a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2077394270 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6918711654785795371, guid: 34603bc5d4e22e443aec55b80025db65, type: 3}
+  m_PrefabInstance: {fileID: 1724728440}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f602ae5c5451c4594e6873a8fb961e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2984787778898171514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1300,6 +1337,22 @@ PrefabInstance:
       propertyPath: portals
       value: 
       objectReference: {fileID: 1904579341}
+    - target: {fileID: 5149302415476342818, guid: e7b39f927ef407d4d984eb2e30bbd628, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 506585009}
+    - target: {fileID: 6803196558660022696, guid: e7b39f927ef407d4d984eb2e30bbd628, type: 3}
+      propertyPath: iterations
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6803196558660022696, guid: e7b39f927ef407d4d984eb2e30bbd628, type: 3}
+      propertyPath: portals.Array.data[0]
+      value: 
+      objectReference: {fileID: 2077394270}
+    - target: {fileID: 6803196558660022696, guid: e7b39f927ef407d4d984eb2e30bbd628, type: 3}
+      propertyPath: portals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1936936124}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -18,7 +18,7 @@ public class Y_Crosshair : MonoBehaviour
     {
         var portals = portalPair.Portals;
 
-        // 포탈의 색깔을 변수에 담는다.
+        // 각 포탈의 색깔을 변수에 담는다.
         inPortalImg.color = portals[0].PortalColour;
         outPortalImg.color = portals[1].PortalColour;
 
@@ -27,10 +27,10 @@ public class Y_Crosshair : MonoBehaviour
         outPortalImg.gameObject.SetActive(false);
     }
 
-    public void SetPortalPlaced(int portalID, bool isPlaced)
+    public void SetPortalPlaced(int portalNum, bool isPlaced)
     {
         // 0번 포탈이 설치되어 있다면
-        if (portalID == 0)
+        if (portalNum == 0)
         {
             // 파랑 포탈 생성 여부 UI 이미지를 활성화한다. 
             inPortalImg.gameObject.SetActive(isPlaced);

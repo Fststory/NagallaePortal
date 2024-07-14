@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5577f687ed2637458e1ba7034be3927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portalPair: {fileID: 0}
+  portalPair: {fileID: 4992815493571830341, guid: 34603bc5d4e22e443aec55b80025db65, type: 3}
   inPortalImg: {fileID: 2164432502697034236}
   outPortalImg: {fileID: 2164432503567870670}
 --- !u!1 &2164432502435144503
