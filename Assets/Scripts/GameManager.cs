@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     int turretHP = 5; //총알 5대 맞으면 비활성화
     public bool isitOver = false;
 
+
     private void Awake()
     {
         if (gm == null)
@@ -31,6 +32,12 @@ public class GameManager : MonoBehaviour
     {
         gameoverUI.SetActive(false);
 
+        Scene currentscene = SceneManager.GetActiveScene();
+        
+        if (currentscene.name == "LAB16_ver.build_PlayerHP100")
+        {
+            playerHP = 100;
+        }
     }
 
     void Update()
@@ -59,8 +66,10 @@ public class GameManager : MonoBehaviour
         if (isitOver && Input.GetMouseButtonDown(0))
         {
             isitOver = false;
-            RestartGame();
+            //RestartGame(); 
+            HP100Mode(); //베타용!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
+
     }
 
     
@@ -100,7 +109,18 @@ public class GameManager : MonoBehaviour
     {
         //현재 씬을 다시 시작한다.
         Time.timeScale = 1f;
-        SceneManager.LoadScene("LAB16");
+        SceneManager.LoadScene(1);
+        
+    }
+    
+    
+
+    public void HP100Mode()
+    {
+        //알파용: 중간에 시작하고 HP가 100인 씬을 실행한다.
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("LAB16_ver.build_PlayerHP100");
+
     }
 
 }

@@ -21,8 +21,7 @@ public class M_Lab16UI : MonoBehaviour
 
     public IEnumerator FadeOut() //이 코루틴으로 알파값 변경
     {
-        print("페이드 아웃 실행 중!");
-
+        
         Color initialColor = hitImage.color;
         initialColor.a = 230f / 255f; // Alpha 값을 230으로 설정 (0~255의 범위를 0~1의 범위로 변환)
         hitImage.color = initialColor;
