@@ -1732,7 +1732,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -2090,7 +2090,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -2337,7 +2337,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -6513,7 +6513,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -9496,7 +9496,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -10377,7 +10377,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -14007,7 +14007,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -16426,7 +16426,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -18716,7 +18716,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
@@ -18859,6 +18859,11 @@ Transform:
   - {fileID: 1304108225}
   m_Father: {fileID: 958454727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1949730763 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 1546172522535672802, guid: e7b39f927ef407d4d984eb2e30bbd628, type: 3}
+  m_PrefabInstance: {fileID: 2112534898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1973072434
 GameObject:
   m_ObjectHideFlags: 0
@@ -19624,7 +19629,7 @@ PrefabInstance:
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: playercol
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1949730763}
     - target: {fileID: 1046155160987016318, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: spotlight
       value: 
