@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 5311256397603521230}
   - component: {fileID: 3627102741951333714}
   - component: {fileID: 3425775393309708372}
+  - component: {fileID: -5560916650487994452}
   m_Layer: 6
   m_Name: Turret
   m_TagString: LabObject
@@ -493,6 +494,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5560916650487994452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575262318888342428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d521cdfbd8d7203419c9d7f11bd5d9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6614023999793243320
 PrefabInstance:
   m_ObjectHideFlags: 0
