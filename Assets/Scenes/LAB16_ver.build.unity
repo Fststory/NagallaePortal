@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 32714757}
   m_Layer: 11
   m_Name: BRfloor1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 115846027}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2656,7 +2656,7 @@ GameObject:
   - component: {fileID: 245502467}
   m_Layer: 11
   m_Name: LRfloor3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2762,7 +2762,7 @@ GameObject:
   - component: {fileID: 247899421}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2867,7 +2867,7 @@ GameObject:
   - component: {fileID: 248255644}
   m_Layer: 11
   m_Name: LRfloor4
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2973,7 +2973,7 @@ GameObject:
   - component: {fileID: 254924633}
   m_Layer: 11
   m_Name: R1floor1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3079,7 +3079,7 @@ GameObject:
   - component: {fileID: 262748572}
   m_Layer: 0
   m_Name: Dpart2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3291,7 +3291,7 @@ GameObject:
   - component: {fileID: 294107732}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4498,7 +4498,7 @@ GameObject:
   - component: {fileID: 427446308}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5252,7 +5252,7 @@ GameObject:
   - component: {fileID: 460018001}
   m_Layer: 0
   m_Name: Dpart4
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6228,7 +6228,7 @@ GameObject:
   - component: {fileID: 534455456}
   m_Layer: 11
   m_Name: sillfloor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6591,7 +6591,7 @@ GameObject:
   - component: {fileID: 567081736}
   m_Layer: 11
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6697,7 +6697,7 @@ GameObject:
   - component: {fileID: 577332744}
   m_Layer: 0
   m_Name: FEfloor2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7971,7 +7971,7 @@ GameObject:
   - component: {fileID: 730981188}
   m_Layer: 11
   m_Name: Quad
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8400,7 +8400,7 @@ GameObject:
   - component: {fileID: 775641256}
   m_Layer: 0
   m_Name: Elevator
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8927,7 +8927,7 @@ GameObject:
   - component: {fileID: 816570954}
   m_Layer: 0
   m_Name: Elevator
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9089,7 +9089,7 @@ GameObject:
   - component: {fileID: 819397701}
   m_Layer: 11
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9300,7 +9300,7 @@ GameObject:
   - component: {fileID: 821740179}
   m_Layer: 11
   m_Name: BRfloor3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10036,7 +10036,7 @@ GameObject:
   - component: {fileID: 909480468}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10957,7 +10957,7 @@ GameObject:
   - component: {fileID: 1030201661}
   m_Layer: 11
   m_Name: FEfloor1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11871,7 +11871,7 @@ GameObject:
   - component: {fileID: 1110785764}
   m_Layer: 11
   m_Name: P2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12416,7 +12416,7 @@ GameObject:
   - component: {fileID: 1185264407}
   m_Layer: 5
   m_Name: Panel_Attacked
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12808,7 +12808,7 @@ GameObject:
   - component: {fileID: 1204295289}
   m_Layer: 0
   m_Name: FEfloor2 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13830,7 +13830,7 @@ GameObject:
   - component: {fileID: 1281753079}
   m_Layer: 0
   m_Name: DFloor1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18240,7 +18240,7 @@ GameObject:
   - component: {fileID: 1715705422}
   m_Layer: 0
   m_Name: Dpart3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18363,7 +18363,7 @@ GameObject:
   - component: {fileID: 1736185639}
   m_Layer: 11
   m_Name: LRroomfloor5
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18681,7 +18681,7 @@ GameObject:
   - component: {fileID: 1756584457}
   m_Layer: 11
   m_Name: LRfloor2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18792,7 +18792,7 @@ GameObject:
   - component: {fileID: 1772199094}
   m_Layer: 0
   m_Name: Dpart1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19746,7 +19746,7 @@ GameObject:
   - component: {fileID: 1863427676}
   m_Layer: 11
   m_Name: Butfloor1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19857,7 +19857,7 @@ GameObject:
   - component: {fileID: 1878113549}
   m_Layer: 11
   m_Name: LRfloor1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19968,7 +19968,7 @@ GameObject:
   - component: {fileID: 1889742281}
   m_Layer: 0
   m_Name: DFloor2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20074,7 +20074,7 @@ GameObject:
   - component: {fileID: 1891631666}
   m_Layer: 11
   m_Name: BRfloor2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21434,7 +21434,7 @@ GameObject:
   - component: {fileID: 2012272215}
   m_Layer: 11
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22598,7 +22598,7 @@ GameObject:
   - component: {fileID: 2107823411}
   m_Layer: 0
   m_Name: P1 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22939,7 +22939,7 @@ GameObject:
   - component: {fileID: 2113371993}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
