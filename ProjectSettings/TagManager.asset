@@ -24,8 +24,8 @@ TagManager:
   - LevelGeom
   - Portal
   - CanMakePortal
-  - 
-  - 
+  - Bullet
+  - Turret
   - 
   - 
   - 

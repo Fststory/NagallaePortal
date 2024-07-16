@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3118601009760584393}
   - component: {fileID: 668724541911825040}
   - component: {fileID: 633755283432481872}
-  m_Layer: 6
-  m_Name: Bullet
+  m_Layer: 12
+  m_Name: Bullet(Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b7df2c92687784ab322b4d995ebed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 90
+  movespeed: 500
   turret: {fileID: 0}
   damage: 20
   lifespan: 0.7

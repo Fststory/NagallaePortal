@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2400717331897388552}
   - component: {fileID: 7072930356491202135}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7101313870502172225}
   - component: {fileID: 5796493977859262228}
   - component: {fileID: 5300102943294934245}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: TurretLaserFar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,9 +190,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8034017167201844562}
-  m_Layer: 6
+  - component: {fileID: 2272040223374283570}
+  m_Layer: 0
   m_Name: TurretBody
-  m_TagString: Untagged
+  m_TagString: LabObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,6 +215,29 @@ Transform:
   - {fileID: 2400717331897388552}
   m_Father: {fileID: 8551179636593237982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2272040223374283570
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2673578168259474209}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5040748
+  m_Height: 1.9265885
+  m_Direction: 1
+  m_Center: {x: -0.004074812, y: -0.21931362, z: 0}
 --- !u!1 &4672085515688409242
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6943155878710848471}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: FirePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +263,7 @@ Transform:
   m_GameObject: {fileID: 4672085515688409242}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02, z: 1.464}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0.159}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -256,7 +280,7 @@ GameObject:
   - component: {fileID: 6415590428170304424}
   - component: {fileID: 30292946999515123}
   - component: {fileID: 5044270801269525250}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: TurretLasernarrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7168300902772614584}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,8 +399,8 @@ GameObject:
   - component: {fileID: 3627102741951333714}
   - component: {fileID: 3425775393309708372}
   - component: {fileID: -5560916650487994452}
-  m_Layer: 6
-  m_Name: Turret
+  m_Layer: 13
+  m_Name: M_Turret
   m_TagString: LabObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,14 +437,18 @@ MonoBehaviour:
   turretbullet: {fileID: 4821471729964594004, guid: b007cdbc6d1fe5b489d4cfb32c2fecfe, type: 3}
   fireposition: {fileID: 4672085515688409242}
   spotlight: {fileID: 0}
-  Particle: {fileID: 0}
+  Particle: {fileID: 100006, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+  bulletHoleparticle: {fileID: 100002, guid: 9fa86d037b5f34d4299572aa23317ab4, type: 3}
   playercol: {fileID: 0}
+  maskTurret:
+    serializedVersion: 2
+    m_Bits: 8192
   warningTime: 1
   rotationSpeed: 3
   rotX: 0
   rotZ: 0
   warning: 0
-  shooting: 1
+  shooting: 0
   noshoot: 0
   shootTime: 0
   shootDelay: 0.3
@@ -554,9 +582,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6545756468129849250, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6442840951108381228, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5532027203638323816, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3577121519627071307, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
       propertyPath: m_Name
       value: turret(5)_size
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798385784164564686, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942484512075736709, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280823099821573369, guid: 11fba4454fcd5704bb1af6c510fe2c35, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -576,9 +636,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7168300902772614584}
     m_Modifications:
+    - target: {fileID: 100000, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
       propertyPath: m_Name
       value: M_TurretParticleRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -650,9 +726,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7168300902772614584}
     m_Modifications:
+    - target: {fileID: 100000, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
       propertyPath: m_Name
       value: M_TurretParticleLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
       propertyPath: m_LocalPosition.x

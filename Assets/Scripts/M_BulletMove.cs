@@ -42,5 +42,9 @@ public class M_BulletMove : MonoBehaviour
             GameManager.gm.AddDamage(1); //게임매니저에서 데미지 1 깎음
             Destroy(gameObject);
         }
+        else
+        {
+            Destroy(gameObject );
+        }
     }
 }

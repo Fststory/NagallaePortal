@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,8 +9,25 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
 
-    public M_Lab16UI m_Lab16UI; //16번랩 함수 받아오기 위해서 호출
-    public GameObject gameoverUI;
+    public M_Lab16UI m_Lab16UI; //디폴트 UI 스크립트
+    public GameObject gameoverUI; //게임오버 UI
+    public GameObject lab16UI; //피격UI
+
+    #region M_플레이어 사망 제어 변수
+    public GameObject player; //사망시 플레이어 움직임을 제어하기 위해 컴포넌트 제작
+    public GameObject playerCam; //카메라도 뺏어봐 아오
+    public GameObject portalGun; //포탈건 뺏어 뺏어
+    public Transform deadposition; //플레이어 묫자리
+
+    Y_Player _Y_Player; //플레이어 스크립트 제어용 
+    Y_CanUsePortal _Y_CanUsePortal; //플레이어 스크립트 제어용 
+    M_GrabMe _M_GrabMe; //플레이어 스크립트 제어용
+    Y_CamRotate _Y_CamRotate; //카메라 스크립트 제어용
+
+    public float collapsetime = 0.7f; //플레이어 쓰러지는 시간
+    float currenttime = 0;
+    float rotZ; //쓰러지는 각도(Z축)
+    #endregion
 
     public int playerHP = 10; //총알 10대 맞으면 사망
     int turretHP = 5; //총알 5대 맞으면 비활성화
@@ -30,14 +48,23 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        gameoverUI.SetActive(false);
-
         Scene currentscene = SceneManager.GetActiveScene();
-        
-        if (currentscene.name == "LAB16_ver.build_PlayerHP100")
+
+        gameoverUI.SetActive(false); //게임오버씬 비활성화
+
+        #region 플레이어 쓰러지기용
+        _Y_Player = player.gameObject.GetComponent<Y_Player>(); //플레이어 스크립트 캐싱
+        _Y_CanUsePortal = player.gameObject.GetComponent<Y_CanUsePortal>();
+        _M_GrabMe = player.gameObject.GetComponent<M_GrabMe>();
+        _Y_CamRotate = playerCam.gameObject.GetComponent<Y_CamRotate>();
+        #endregion
+
+        #region 알파용 코드
+        if (currentscene.name == "LAB16_ver.build_PlayerHP100") //알파용 씬 HP재설정
         {
             playerHP = 100;
         }
+        #endregion
     }
 
     void Update()
@@ -63,11 +90,11 @@ public class GameManager : MonoBehaviour
         }
 
         //게임 오버 상태에서 좌클릭했을때 현재 씬을 다시 시작하기
-        if (isitOver && Input.GetMouseButtonDown(0))
+        if (isitOver && Input.GetMouseButtonDown(0)) //isitover상태에서 좌클릭시
         {
-            isitOver = false;
-            //RestartGame(); 
-            HP100Mode(); //베타용!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            isitOver = false; //bool부터 풀어주고
+            RestartGame(); //다시 시작
+            //HP100Mode(); //베타용!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
 
     }
@@ -100,9 +127,56 @@ public class GameManager : MonoBehaviour
 
     public void ShowGameOverUI() //게임 오버!
     {
+        //플레이어 쓰러지기
+
+        //일단 조작 불가하게 스크립트 압수
+        _Y_Player.enabled = false;
+        _Y_CanUsePortal.enabled = false;
+        _M_GrabMe.enabled = false;
+        _Y_CamRotate.enabled = false;
+
+        //포탈건 오브젝트째로 압수
+        portalGun.SetActive(false);
+
+        //피격 UI 압수
+        lab16UI.SetActive(false);
+
+        #region 실패했지만 나중에 찾을 것 같은 코드
+        //이건 ShowGameOverUI에서 실행시 토글함수라 계속 깜빡거리면서 활성화 비활성화를 반복한다. 버튼 누를때나 가능할듯...
+        //_Y_Player.enabled = !_Y_Player.enabled; //활성화 여부 토글
+        //_Y_CanUsePortal.enabled = !_Y_CanUsePortal.enabled;
+        //_M_GrabMe.enabled = !_M_GrabMe.enabled;
+        #endregion
+
+        //이제 쓰러지게 하면 되는데...
+        deadposition.SetParent(null); //자식 오브젝트 안 떼어내면 누워서 뱅글뱅글 돈다.
+        Vector3 startpos = player.transform.position; //현재 플레이어 위치를 startpos에 지정. 각도는 어차피 서있으니 생략.
+
         gameoverUI.SetActive(true);
+        
+        if ( currenttime < collapsetime) //쓰러지는 시간동안!
+        {
+            currenttime += Time.deltaTime; //타이머 흐르고
+            float t = currenttime/collapsetime; //비율계산1
+            t = Mathf.Pow(t, 2); //비율에 계속 제곱을 해서 점점 빨라지도록 한다.
+            player.transform.position = Vector3.Lerp(startpos, deadposition.transform.position, t); //위치이동
+
+            rotZ = Mathf.Lerp(rotZ, -90, t); //z축만 각도 계산
+            player.transform.eulerAngles = new Vector3(0, 0, rotZ); //각도 이동
+           
+            
+            Rigidbody PlayerRigid = player.gameObject.GetComponent<Rigidbody>(); //물리컴포넌트 갖고와봐 왜미끄러짐??
+            PlayerRigid.isKinematic = true; //키네틱 켜
+        }
+        else
+        {
+            player.transform.position = deadposition.transform.position;
+            player.transform.rotation = deadposition.transform.rotation; //눕게 만들기
+            //Time.timeScale = 0.0f; //시간이 안 흐르게 하고싶음
+        }
+
         isitOver = true;
-        Time.timeScale = 0.0f;
+        
     }
 
     public void RestartGame()

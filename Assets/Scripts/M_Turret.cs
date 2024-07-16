@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -14,7 +15,9 @@ public class M_Turret : MonoBehaviour
     public GameObject fireposition;
     public GameObject spotlight;
     public GameObject Particle;
+    public GameObject bulletHoleparticle;
     public Collider playercol;
+    public LayerMask maskTurret;
 
     public float warningTime = 1.0f;
     public float rotationSpeed = 3.0f;
@@ -34,7 +37,7 @@ public class M_Turret : MonoBehaviour
 
     private Transform playerTransform;
     private Quaternion originalRotation;
-    private float maxRotationAngle = 90f;
+    private float maxRotationAngle = 60f;
 
     void Start()
     {
@@ -74,13 +77,16 @@ public class M_Turret : MonoBehaviour
                     }
                     else
                     {
-                        GameObject fir = Instantiate(turretbullet);
-                        fir.transform.position = fireposition.transform.position;
-                        fir.transform.rotation = fireposition.transform.rotation;
+                        #region 총알 소환 -레거시-
+                        //GameObject fir = Instantiate(turretbullet);
+                        //fir.transform.position = fireposition.transform.position;
+                        //fir.transform.rotation = fireposition.transform.rotation;
 
-                        fir.GetComponent<M_BulletMove>().turret = gameObject;
+                        //fir.GetComponent<M_BulletMove>().turret = gameObject;
+                        #endregion
 
-                        shootDelay = 0.3f;
+                        ShootingTurret();
+                        shootDelay = 0.3f; //0.3초마다 레이를 처쏴.
                     }
 
                 }
@@ -100,8 +106,6 @@ public class M_Turret : MonoBehaviour
         }
 
         
-
-
         //레이저 따라가게 하기
         //lerp를 쓰는게 맞을 것 같다.
         //근데 일단 챗 GPT좀
@@ -169,6 +173,58 @@ public class M_Turret : MonoBehaviour
                 {
                     warningTime += Time.deltaTime;
                 }
+            }
+        }
+    }
+
+    void ShootingTurret()
+    {
+        //레이캐스트 방식
+        RaycastHit hit;
+        Vector3 rayOrigin = fireposition.transform.position;
+        Vector3 rayDirection = fireposition.transform.forward;
+        Debug.DrawRay(rayOrigin, rayDirection, Color.red, 5.0f); //디버그용 레이 궤도
+
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 50f, maskTurret))
+        {
+            Debug.Log("turret hit: " + hit.collider.gameObject.name); // 디버그 메시지
+
+            if (hit.collider != null && hit.collider.gameObject.name == "Player")
+            {
+                GameManager.gm.AddDamage(1); //처맞기
+            }
+            //else if (hit.collider.gameObject.tag == "LabObject")
+            //{
+            //    //사운드 다르게 할거라서 분리 //레이 오류로 파티클 확인하려고 잠시 비활성화해둠
+            //}
+            else if (hit.collider.gameObject.name.Contains("Window"))
+            {
+                //총알 파티클 넣기(불렛홀이 남는 걸로)
+                GameObject hole = Instantiate(bulletHoleparticle); //인스턴스화
+
+                //레이 맞은 위치에 넣기
+                hole.transform.position = hit.point;
+                hole.transform.rotation = hit.collider.transform.rotation;
+
+                //사운드 분리할 예정
+            }
+            else
+            {
+                //총알 파티클 넣기(불렛홀이 남는 걸로)
+                GameObject hole = Instantiate(bulletHoleparticle); //인스턴스화
+
+                //레이 맞은 위치에 넣기
+                hole.transform.position = hit.point;
+
+                //쿼터니언 뒤집기 변수 선언
+                Quaternion yRotation = Quaternion.Euler(0, 180, 0);
+
+                //180도 뒤집어서 넣기
+                hole.transform.rotation = hit.collider.transform.rotation * yRotation;
+
+                Vector3 normal = hit.normal;
+
+                //사운드 분리할 예정
             }
         }
     }
