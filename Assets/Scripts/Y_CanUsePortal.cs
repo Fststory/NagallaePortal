@@ -119,22 +119,27 @@ public class Y_CanUsePortal : MonoBehaviour
             cloneObject.SetActive(false);
         }
     }
-    public virtual void Warp()
+    public virtual void Warp()      // 포탈 간 이동 및 그에 따른 방향, 속도 처리를 담당하는 함수, (말 그대로 워프)
     {
         var inTransform = inPortal.transform;                       // 인포탈의 트랜스폼을 담는 변수(inTransform)
         var outTransform = outPortal.transform;                     // 아웃포탈의 트랜스폼을 담는 변수(outTransform)
 
+        // Quaternion halfTurn이 없으면 포탈에 들어가서 나오질 못 할 것이다.
+
         // Update position of object.(원문)
+        // 반대편 포탈로 위치 이동
         Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
         relativePos = halfTurn * relativePos;
         transform.position = outTransform.TransformPoint(relativePos);
 
         // Update rotation of object.(원문)
-        Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
-        relativeRot = halfTurn * relativeRot;
-        transform.rotation = outTransform.rotation * relativeRot;
+        // 들어갈 때의 방향과 같은 방향으로 나온다
+        Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;     // 포탈에 들어가는 방향을 담음
+        relativeRot = halfTurn * relativeRot;           // 들어가는 방향과 반대 방향 반환
+        transform.rotation = outTransform.rotation * relativeRot;       // 포탈에서 나올 때의 방향을 적용한다.
 
         // Update velocity of rigidbody.(원문)
+        // 들어갈 때의 속력은 나올 때도 그대로 유지된다
         Vector3 relativeVel = inTransform.InverseTransformDirection(rigidbody.velocity);
         relativeVel = halfTurn * relativeVel;
         rigidbody.velocity = outTransform.TransformDirection(relativeVel);

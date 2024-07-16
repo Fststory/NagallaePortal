@@ -10,6 +10,7 @@ public class Y_Player : MonoBehaviour
     #region PlayerMove() 변수
     // Player의 이동 속도 변수
     public float moveSpeed = 5;
+    Vector3 dir = Vector3.zero;
 
     // Rigidbody 선언 및 점프력, 땅 위에 있는지 변수
     private Rigidbody playerRB;
@@ -39,10 +40,15 @@ public class Y_Player : MonoBehaviour
 
     void Update()
     {
-        PlayerMove();
+        //PlayerMove();
         PlayerJump();
         PlayerRotate();
         PlayerHealth();
+    }
+
+    private void FixedUpdate()
+    {
+        PlayerMove();
     }
 
     void PlayerMove()
@@ -50,7 +56,7 @@ public class Y_Player : MonoBehaviour
         // 플레이어의 키 입력에 따라 움직임(전후좌우)을 구현
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
-        Vector3 dir = new Vector3(moveX, 0, moveZ);
+        dir = new Vector3(moveX, 0, moveZ);
         dir.Normalize();
 
         // 메인 카메라를 기준으로 방향을 변환한다. (카메라가 바라보는 곳이 플레이어의 z축[앞 방향]이 된다.)
@@ -59,7 +65,8 @@ public class Y_Player : MonoBehaviour
         dir.y = 0;
 
         // p = p0 + vt
-        transform.position += dir * moveSpeed * Time.deltaTime;        
+        //transform.position += dir * moveSpeed * Time.deltaTime;
+        playerRB.velocity = dir * moveSpeed;
     }
 
     void PlayerJump()
