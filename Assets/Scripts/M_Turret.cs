@@ -17,7 +17,6 @@ public class M_Turret : MonoBehaviour
     public GameObject Particle;
     public GameObject bulletHoleparticle;
     public Collider playercol;
-    public LayerMask maskTurret;
 
     public float warningTime = 1.0f;
     public float rotationSpeed = 3.0f;
@@ -185,7 +184,7 @@ public class M_Turret : MonoBehaviour
         Vector3 rayDirection = fireposition.transform.forward;
         Debug.DrawRay(rayOrigin, rayDirection, Color.red, 5.0f); //디버그용 레이 궤도
 
-        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 50f, maskTurret))
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 50f))
         {
             Debug.Log("turret hit: " + hit.collider.gameObject.name); // 디버그 메시지
 
