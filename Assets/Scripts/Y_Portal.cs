@@ -18,7 +18,7 @@ public class Y_Portal : MonoBehaviour
     private LayerMask placementMask;                            // 설치 가능 레이어 목록
 
     [SerializeField]
-    private Transform testTransform;                            // 
+    private Transform testTransform;                            // 포탈 설치가 가능한지 먼저 실험하는 변수
 
     private List<Y_CanUsePortal> portalObjects = new List<Y_CanUsePortal>();    
     // 포탈 사용 가능 오브젝트("이하 포사오")의 리스트, 포탈을 이용할 수 있는 자격증
@@ -29,7 +29,7 @@ public class Y_Portal : MonoBehaviour
 
     // Components.
     public Renderer Renderer { get; private set; }              // 포탈 렌더링 담당 변수
-    private new BoxCollider collider;                           // 포탈 콜라이더 담당 변수
+    private new BoxCollider collider;                           // 포탈 콜라이더 담당 변수 (포탈 문틀 X)
 
     private void Awake()
     {
@@ -82,8 +82,8 @@ public class Y_Portal : MonoBehaviour
 
     public bool PlacePortal(Collider wallCollider, Vector3 pos, Quaternion rot)
     {
-        testTransform.position = pos;                                   // pos에 들어온 위치를 포지션으로 저장
-        testTransform.rotation = rot;                                   // rot에 들어온 회전을 로테이션으로 저장
+        testTransform.position = pos;                                   // testTransform에 포탈 Ray가 닿은 위치를 담는다.
+        testTransform.rotation = rot;                                   // testTransform에 포탈의 회전 정보를 담는다.
         testTransform.position -= testTransform.forward * 0.001f;       // 벽에서 살짝 튀어 나오게
 
         FixOverhangs();                 // 포탈이 벽의 경계(모서리)를 벗어나지 않도록 함.
@@ -92,8 +92,8 @@ public class Y_Portal : MonoBehaviour
         if (CheckOverlap())             // 
         {
             this.wallCollider = wallCollider;               // 포탈의 콜라이더를 포탈이 설치되는 벽의 콜라이더로 지정
-            transform.position = testTransform.position;    // 
-            transform.rotation = testTransform.rotation;    // 
+            transform.position = testTransform.position;    // 테스트 최종 합격한 곳의 위치가 포탈의 위치가 된다
+            transform.rotation = testTransform.rotation;    // 테스트 최종 합격한 곳의 회전이 포탈의 회전이 된다.
 
             gameObject.SetActive(true);                     // 포탈을 활성화
             IsPlaced = true;                                // IsPlaced를 true로 설정
@@ -176,7 +176,7 @@ public class Y_Portal : MonoBehaviour
     {
         var checkExtents = new Vector3(0.9f, 1.9f, 0.05f);
 
-        var checkPositions = new Vector3[]
+        var checkPositions = new Vector3[]      // 포탈 설치 전 공간 체크하는 벡터3의 배열
         {
             testTransform.position + testTransform.TransformVector(new Vector3( 0.0f,  0.0f, -0.1f)),
             testTransform.position + testTransform.TransformVector(new Vector3(-1.0f, -2.0f, -0.1f)),
@@ -195,20 +195,20 @@ public class Y_Portal : MonoBehaviour
 
         if (intersections.Length > 1)   // 포탈이 생성될 위치에 두 개 이상의 포탈 생성 가능 물체(레이어가 붙은 벽)가 감지된다면
         {
-            return false;
+            return false;               // 포탈은 생성될 수 없다.
         }
-        else if (intersections.Length == 1)
+        else if (intersections.Length == 1)     // 그게 아니라 만약 포탈 생성 체크 박스 안에 하나의 물체만 감지된다면
         {
             // We are allowed to intersect the old portal position.(원문)
-            // 이전에 설치한 포탈과는 교차할 수 있다.(어차피 새로 생성되면서 이전의 포탈은 사라질 테니까)
-            if (intersections[0] != collider)
+            // 
+            if (intersections[0] != collider)   // 만약 포탈 위에 쏜 게 아니라면
             {
-                return false;
+                return false;   //포탈은 생성될 수 없다.
             }
         }
 
         // Ensure the portal corners overlap a surface.(원문)
-        // 벽 위에 포탈이 생성될 수 있게 해줌
+        // ray가 닿은 지점을 기준으로 포탈이 생긴다면 포탈의 네 모서리가 벽 위에 존재할 수 있을 지 판단함.
         bool isOverlapping = true;
 
         for (int i = 1; i < checkPositions.Length - 1; ++i)
