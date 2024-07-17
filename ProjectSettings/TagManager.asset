@@ -11,6 +11,7 @@ TagManager:
   - RedPortal
   - BluePortal
   - Ground
+  - Feet
   layers:
   - Default
   - TransparentFX

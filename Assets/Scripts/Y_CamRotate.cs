@@ -37,54 +37,37 @@ public class Y_CamRotate : MonoBehaviour
     //}
     #endregion
 
-    private const float moveSpeed = 7.5f;
     private const float cameraSpeed = 3.0f;
 
     public Quaternion TargetRotation { private set; get; }
 
-    //private Vector3 moveVector;
-
-    private new Rigidbody rigidbody;
-
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();          // 리지드바디 컴포넌트 캐싱
         Cursor.lockState = CursorLockMode.Locked;       // 커서 화면 중앙 고정
 
         TargetRotation = transform.rotation;            // 카메라의 현재 회전 쿼터니언을 변수(TargetRotation)에 저장
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         // 카메라 회전 [마우스 이동]
         var rotation = new Vector2(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));    // 마우스 x,y축 이동(상하좌우)을 값으로 담는다.(Vector2)
-        var targetEuler = TargetRotation.eulerAngles + (Vector3)rotation * cameraSpeed;     // 마우스 이동이 계산 & 적용된 바라보는 방향. (Vector3)
+        var targetEuler = TargetRotation.eulerAngles + (Vector3)rotation * cameraSpeed;     // 마우스 이동 계산 & 적용 => 현재 바라보는 방향. (Vector3)
+                                                                                            // v = v0 + delta.v
+        // 상하 시야각 제한 
         if (targetEuler.x > 180.0f)
         {
             targetEuler.x -= 360.0f;
         }
         targetEuler.x = Mathf.Clamp(targetEuler.x, -75.0f, 75.0f);
-        TargetRotation = Quaternion.Euler(targetEuler);
+        TargetRotation = Quaternion.Euler(targetEuler);         // (현재 바라보는 방향)벡터3 => 쿼터니언으로 변환
 
+        // 카메라가 마우스 입력에 따라 이동하는 것을 실행하는 부분
         transform.rotation = Quaternion.Slerp(transform.rotation, TargetRotation,
             Time.deltaTime * 15.0f);
-
-        //// 카메라 움직이기 [w,a,s,d]
-        //float x = Input.GetAxis("Horizontal");
-        //float z = Input.GetAxis("Vertical");
-        //Vector3 dir = new Vector3(x, 0.0f, z);
-        //dir.Normalize();
-        //moveVector = dir * moveSpeed;
     }
 
-    //private void FixedUpdate()
-    //{
-    //    Vector3 newVelocity = transform.TransformDirection(moveVector);
-    //    rigidbody.velocity = newVelocity;
-    //}
-
-
-    // 오뚝이 기능!!!
+    // 오뚝이 기능!!! (플레이어 오브젝트에서 실행돼야 함, 다른 물체[터렛,우정박스 등]와 플레이어가 구분되는 요소)
     // 포탈 이동으로 변형된 시점의 회전을 다시 정상으로 돌리는 것 (항상 나의 위 방향이 월드 좌표에서 정해진 위의 방향이 되게끔)
     // (땅을 밟고 있을 땐 xz평면에 평행한 방향을 정면으로 바라보지만
     // 포탈에서 나올 때 yz평면을 발 밑에 둔다면 yz평면에 평행한 방향을 정면으로 바라보게 된다. 이때 다시 처음의 상태로 돌아가는 것)
