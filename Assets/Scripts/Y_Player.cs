@@ -40,7 +40,7 @@ public class Y_Player : MonoBehaviour
 
     void Update()
     {
-        //PlayerMove();
+        PlayerMove();
         PlayerJump();
         PlayerRotate();
         PlayerHealth();
@@ -48,7 +48,7 @@ public class Y_Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMove();
+        //PlayerMove();
     }
 
     void PlayerMove()
