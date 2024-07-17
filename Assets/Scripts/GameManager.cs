@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class GameManager : MonoBehaviour
     public M_Lab16UI m_Lab16UI; //디폴트 UI 스크립트
     public GameObject gameoverUI; //게임오버 UI
     public GameObject lab16UI; //피격UI
+    //public GameObject loadUI; //게임 불러오는 중 UI //잘 안돼서 삭제
+    public GameObject pressESC; //ESC 눌렀을 때 나오는 설정 UI
+    public GameObject portalUI; //포탈 UI
 
     #region M_플레이어 사망 제어 변수
     public GameObject player; //사망시 플레이어 움직임을 제어하기 위해 컴포넌트 제작
@@ -30,8 +34,9 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public int playerHP = 10; //총알 10대 맞으면 사망
-    int turretHP = 5; //총알 5대 맞으면 비활성화
-    public bool isitOver = false;
+    //int turretHP = 5; //총알 5대 맞으면 비활성화
+    public bool isitOver = false; //플레이어 사망 확인 bool
+    public bool escOn = false; //ESC 활성화 확인 bool
 
 
     private void Awake()
@@ -50,7 +55,8 @@ public class GameManager : MonoBehaviour
     {
         Scene currentscene = SceneManager.GetActiveScene();
 
-        gameoverUI.SetActive(false); //게임오버씬 비활성화
+        gameoverUI.SetActive(false); //게임오버UI 비활성화
+        pressESC.SetActive(false); //ESC_UI 비활성화
 
         #region 플레이어 쓰러지기용
         _Y_Player = player.gameObject.GetComponent<Y_Player>(); //플레이어 스크립트 캐싱
@@ -60,10 +66,10 @@ public class GameManager : MonoBehaviour
         #endregion
 
         #region 알파용 코드
-        if (currentscene.name == "LAB16_ver.build_PlayerHP100") //알파용 씬 HP재설정
-        {
-            playerHP = 100;
-        }
+        //if (currentscene.name == "LAB16_ver.build_PlayerHP100") //알파용 씬 HP재설정
+        //{
+        //    playerHP = 100;
+        //}
         #endregion
     }
 
@@ -82,6 +88,8 @@ public class GameManager : MonoBehaviour
             ScenePortal(1);                         // 다음 씬 스타트
         }
 
+        #region 게임오버 UI
+
         //플레이어의 HP가 0이 되면 게임오버 UI
 
         if (playerHP <= 0)
@@ -94,12 +102,22 @@ public class GameManager : MonoBehaviour
         {
             isitOver = false; //bool부터 풀어주고
             RestartGame(); //다시 시작
-            //HP100Mode(); //베타용!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //HP100Mode(); //베타용
         }
 
+        #endregion
+
+        if (!escOn && Input.GetKeyDown(KeyCode.Escape))
+        {
+            PressESC();
+        }
+        else if (escOn && Input.GetKeyDown(KeyCode.Escape)) //ESC UI 켜진 상태에서 한번 더 누르면?
+        {
+            Continue(); //계속하기 판정
+        }
     }
 
-    
+
 
     void ScenePortal(int num)      // 씬 이동 기능 구현!
     {
@@ -140,6 +158,8 @@ public class GameManager : MonoBehaviour
 
         //피격 UI 압수
         lab16UI.SetActive(false);
+        //포탈 UI 압수
+        portalUI.SetActive(false);
 
         #region 실패했지만 나중에 찾을 것 같은 코드
         //이건 ShowGameOverUI에서 실행시 토글함수라 계속 깜빡거리면서 활성화 비활성화를 반복한다. 버튼 누를때나 가능할듯...
@@ -174,27 +194,68 @@ public class GameManager : MonoBehaviour
             player.transform.rotation = deadposition.transform.rotation; //눕게 만들기
             //Time.timeScale = 0.0f; //시간이 안 흐르게 하고싶음
         }
-
         isitOver = true;
-        
     }
 
     public void RestartGame()
     {
-        //현재 씬을 다시 시작한다.
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
-        
+        SceneManager.LoadScene(1); //재시작
     }
     
-    
-
-    public void HP100Mode()
+    void PressESC()
     {
-        //알파용: 중간에 시작하고 HP가 100인 씬을 실행한다.
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("LAB16_ver.build_PlayerHP100");
+        escOn = true; //UI 켜졌으니 bool 참
+        Time.timeScale = 0.0f;//시간 멈추기
+        #region 압수할 게임오브젝트 목록
+        portalUI.SetActive(false); //포탈 UI 압수하기
+        //portalGun.SetActive(false); //포탈건 오브젝트째로 압수 //하면 큰일난다!!
+        portalGun.GetComponent<Y_PortalGunFire>().enabled = false; //코드만 압수하기
+        #endregion
+        pressESC.SetActive(true); //ESC UI 불러오기
+        Cursor.lockState = CursorLockMode.Confined;//마우스 활성화하기
 
     }
+
+    public void Continue() //계임 계속
+    {
+        escOn = false; //UI 꺼졌으니 bool 거짓
+        Time.timeScale = 1f; //시간 원상복구하기
+        pressESC.SetActive(false); //UI끄고...
+        #region 압수한거 돌려줄 목록
+        portalUI.SetActive(true); //포탈 UI 돌려주고...
+        //portalGun.SetActive(true); //포탈건 오브젝트 돌려주기
+        portalGun.GetComponent<Y_PortalGunFire>().enabled = true; //코드 돌려주기
+        #endregion
+        Cursor.lockState = CursorLockMode.Locked; //마우스 다시 잠그기
+    }
+
+    public void EscToContinue() //ESC 메뉴에서 재시작
+    {
+        Time.timeScale = 1f; //시간 원상복구하기
+        #region 압수한거 돌려줄 목록
+        portalUI.SetActive(true); //포탈 UI 돌려주고...
+        //portalGun.SetActive(true); //포탈건 오브젝트 돌려주기
+        portalGun.GetComponent<Y_PortalGunFire>().enabled = true; //코드 돌려주기
+        #endregion
+        SceneManager.LoadScene(1); //재시작
+    }
+
+    public void GotoMain() //ESC메뉴에서 메인으로
+    {
+        Time.timeScale = 1f; //시간 원상복구하기
+        #region 압수한거 돌려줄 목록
+        portalUI.SetActive(true); //포탈 UI 돌려주고...
+        //portalGun.SetActive(true); //포탈건 오브젝트 돌려주기
+        portalGun.GetComponent<Y_PortalGunFire>().enabled = true; //코드 돌려주기
+        #endregion
+        SceneManager.LoadScene(0);
+    }
+
+    //public void HP100Mode()
+    //{
+    //    //알파용: 중간에 시작하고 HP가 100인 씬을 실행한다.
+    //    Time.timeScale = 1f;
+    //    SceneManager.LoadScene("LAB16_ver.build_PlayerHP100");
+    //}
 
 }

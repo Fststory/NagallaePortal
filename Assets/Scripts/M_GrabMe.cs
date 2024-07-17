@@ -21,9 +21,20 @@ public class M_GrabMe : MonoBehaviour
     private Rigidbody grabbedRigidbody; // 잡힌 아이템의 Rigidbody
     private Camera mainCamera; // Main Camera의 참조
 
+    public GameObject portalUI; //포탈 에임 UI
+    public GameObject portalGun; //포탈건
+    public GameObject gunBody; //포탈건 몸체
+    public GameObject fakegunBody; //전시된 포탈건
+    public bool isgunMine=false;
+
     void Start()
     {
         mainCamera = Camera.main; // Main Camera의 참조를 가져옴
+
+        portalUI.SetActive(false); //UI 꺼
+        portalGun.GetComponent<Y_PortalGunFire>().enabled = false; //포탈 기능 꺼
+        gunBody.SetActive(false); //몸 뺏어
+
     }
 
     void Update()
@@ -40,6 +51,7 @@ public class M_GrabMe : MonoBehaviour
                 // 아이템을 잡는다
                 TryGrabItem();
             }
+            
         }
     }
     #region 그랩 구버전(~7/14)
@@ -81,6 +93,14 @@ public class M_GrabMe : MonoBehaviour
                     grabbedObject.localPosition = Vector3.zero; // 손 위치에 정확히 배치
                     isGrabbing = true;
                 }
+            }
+            else if (!isgunMine && hit.collider != null && hit.collider.name.Contains("GunHere"))
+            {
+                portalGun.GetComponent<Y_PortalGunFire>().enabled = true; //포탈건 기능 돌려줘
+                gunBody.SetActive(true); //포탈건 신체 돌려줘
+                portalUI.SetActive(true); //포탈 UI 줘
+                isgunMine = true;
+                Destroy(fakegunBody);
             }
         }
     }
