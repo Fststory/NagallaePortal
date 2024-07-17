@@ -40,15 +40,17 @@ public class Y_Player : MonoBehaviour
 
     void Update()
     {
-        PlayerMove();
-        PlayerJump();
+        // 물리를 이용한 움직임은 FixedUpdate에서..!
+        //PlayerMove();
+        //PlayerJump();
         PlayerRotate();
         PlayerHealth();
     }
 
     private void FixedUpdate()
     {
-        //PlayerMove();
+        PlayerMove();
+        PlayerJump();
     }
 
     void PlayerMove()

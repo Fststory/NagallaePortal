@@ -79,14 +79,13 @@ public class Y_CanUsePortal : MonoBehaviour
             var outTransform = outPortal.transform;         // outPortal의 위치, 회전 정보
 
             // Update position of clone.(원문)
-            // 본체의 월드 좌표를 inPortal에서의 로컬 좌표로 계산해 relativePos에 담는다.
+            // Warp()의 포지션 바꾸기와 동일
             Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
-            // inPortal 기준으로 y축으로 180도 회전시킨다.
             relativePos = halfTurn * relativePos;
-            // 클론의 위치를 outPortal 기준에서 relativePos 만큼의 위치에 둔다.
             cloneObject.transform.position = outTransform.TransformPoint(relativePos);
 
             // Update rotation of clone.(원문)
+            // Warp()의 로테이션 바꾸기와 동일
             Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
             relativeRot = halfTurn * relativeRot;
             cloneObject.transform.rotation = outTransform.rotation * relativeRot;
@@ -124,27 +123,34 @@ public class Y_CanUsePortal : MonoBehaviour
         var inTransform = inPortal.transform;                       // 인포탈의 트랜스폼을 담는 변수(inTransform)
         var outTransform = outPortal.transform;                     // 아웃포탈의 트랜스폼을 담는 변수(outTransform)
 
-        // Quaternion halfTurn이 없으면 포탈에 들어가서 나오질 못 할 것이다.
+        // Quaternion halfTurn의 역할 => 두 포탈 간 이동할 때 포탈 입장에서 봤을 때 이용자의 좌우 방향이 들어갈 때와 나올 때 달라짐을 보완해줌.
+        // Quaternion halfTurn이 없으면 포탈에 들어가서 나오질 못 할 것이다. (포탈 이용 간 방향 계산에서 무한 루프할 것임)
 
         // Update position of object.(원문)
-        // 반대편 포탈로 위치 이동
+        // 반대편 포탈에서의 위치 계산 및 적용(좌우 보정)
+        // 들어갈 때 인 포탈의 오른쪽으로 들어가면 나올 땐 아웃 포탈의 왼쪽으로 나와야 됨.
         Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
         relativePos = halfTurn * relativePos;
         transform.position = outTransform.TransformPoint(relativePos);
 
         // Update rotation of object.(원문)
-        // 들어갈 때의 방향과 같은 방향으로 나온다
+        // 반대편 포탈에서의 방향 계산 및 적용(좌우 보정)
+        // 들어갈 때 인 포탈의 중심을 기준으로 북서쪽 방향으로 들어가면 나올 땐 아웃 포탈의 중심을 기준으로 남동쪽 방향으로 나와야 됨.
         Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;     // 포탈에 들어가는 방향을 담음
         relativeRot = halfTurn * relativeRot;           // 들어가는 방향과 반대 방향 반환
         transform.rotation = outTransform.rotation * relativeRot;       // 포탈에서 나올 때의 방향을 적용한다.
 
         // Update velocity of rigidbody.(원문)
-        // 들어갈 때의 속력은 나올 때도 그대로 유지된다
+        // 반대편 포탈에서의 속도 계산 및 적용(좌우 보정)
+        //
         Vector3 relativeVel = inTransform.InverseTransformDirection(rigidbody.velocity);
         relativeVel = halfTurn * relativeVel;
         rigidbody.velocity = outTransform.TransformDirection(relativeVel);
 
         // Swap portal references.(원문)
+        // 워프가 끝나고 인/아웃 포탈을 서로 교체
+        // 아직 용도를 모르겠음. 인포탈과 아웃포탈은 포탈에 들어설 때 매번 결정되는데 이 구문은 어디에 쓰이는 지 모르겠음.
+        // 클론 오브젝트하고 연관 있을지도, 클론 오브젝트도 무슨 역할인지 모르겠음
         var tmp = inPortal;
         inPortal = outPortal;
         outPortal = tmp;
