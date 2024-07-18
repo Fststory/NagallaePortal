@@ -211,22 +211,22 @@ public class GameManager : MonoBehaviour
         //portalGun.SetActive(false); //포탈건 오브젝트째로 압수 //하면 큰일난다!!
         portalGun.GetComponent<Y_PortalGunFire>().enabled = false; //코드만 압수하기
         #endregion
-        pressESC.SetActive(true); //ESC UI 불러오기
         Cursor.lockState = CursorLockMode.Confined;//마우스 활성화하기
+        pressESC.SetActive(true); //ESC UI 불러오기
 
     }
 
     public void Continue() //계임 계속
     {
         escOn = false; //UI 꺼졌으니 bool 거짓
+        Cursor.lockState = CursorLockMode.Locked; //마우스 다시 잠그기 
         Time.timeScale = 1f; //시간 원상복구하기
-        pressESC.SetActive(false); //UI끄고...
         #region 압수한거 돌려줄 목록
+        pressESC.SetActive(false); //ESC UI끄고...
         portalUI.SetActive(true); //포탈 UI 돌려주고...
         //portalGun.SetActive(true); //포탈건 오브젝트 돌려주기
         portalGun.GetComponent<Y_PortalGunFire>().enabled = true; //코드 돌려주기
         #endregion
-        Cursor.lockState = CursorLockMode.Locked; //마우스 다시 잠그기
     }
 
     public void EscToContinue() //ESC 메뉴에서 재시작
