@@ -11,12 +11,13 @@ using UnityEngine.Video;
 public class M_Turret : MonoBehaviour
 {
 
-    public GameObject turretbullet;
+    //public GameObject turretbullet;  //Ray 방식으로 변경하며 삭제
     public GameObject fireposition;
     public GameObject spotlight;
     public GameObject Particle;
     public GameObject bulletHoleparticle;
     public Collider playercol;
+    public LayerMask turretEye;
 
     public float warningTime = 1.0f;
     public float rotationSpeed = 3.0f;
@@ -104,11 +105,7 @@ public class M_Turret : MonoBehaviour
             noshoot = true;
         }
 
-        
         //레이저 따라가게 하기
-        //lerp를 쓰는게 맞을 것 같다.
-        //근데 일단 챗 GPT좀
-
         if (warning && playerTransform != null) //경고 중일때
         {
             LaserGotoPlayer();
@@ -134,47 +131,49 @@ public class M_Turret : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (!noshoot)
-        {
-            if (other.gameObject.name == "Player")
-            {
-                if (warningTime == 1.0f) //첫 경고인가?
-                {
-                    warning = true; //경고 시작
-                    warningTime -= Time.deltaTime; //타이머 시작
-                }
-                else if (warningTime > 0) //경고 중인가?
-                {
-                    warningTime -= Time.deltaTime; //타이머 계속
-                }
-                else if (warningTime < 0) //경고시간이 지났다면
-                {
-                    shooting = true;
-                    shootTime = 2.0f; //사격시간을 계속 업데이트하면서 총쏘게만들기
-                }
+    #region 터렛 콜라이더 분리-해당 코드 TurretCollider에 있음
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (!noshoot)
+    //    {
+    //        if (other.gameObject.name == "Player")
+    //        {
+    //            if (warningTime == 1.0f) //첫 경고인가?
+    //            {
+    //                warning = true; //경고 시작
+    //                warningTime -= Time.deltaTime; //타이머 시작
+    //            }
+    //            else if (warningTime > 0) //경고 중인가?
+    //            {
+    //                warningTime -= Time.deltaTime; //타이머 계속
+    //            }
+    //            else if (warningTime < 0) //경고시간이 지났다면
+    //            {
+    //                shooting = true;
+    //                shootTime = 2.0f; //사격시간을 계속 업데이트하면서 총쏘게만들기
+    //            }
 
-                //shooting = true;
-                //shootTime = 2.0f; //사격시간을 계속 업데이트하면서 총쏘게만들기
-            }
-        }
-    }
+    //            //shooting = true;
+    //            //shootTime = 2.0f; //사격시간을 계속 업데이트하면서 총쏘게만들기
+    //        }
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (!noshoot)
-        {
-            if (other.gameObject.name == "Player")
-            {
-                //사격 이전에 나갔을 때 발동될 명령어
-                if (!shooting && warningTime < 1.0f)
-                {
-                    warningTime += Time.deltaTime;
-                }
-            }
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (!noshoot)
+    //    {
+    //        if (other.gameObject.name == "Player")
+    //        {
+    //            //사격 이전에 나갔을 때 발동될 명령어
+    //            if (!shooting && warningTime < 1.0f)
+    //            {
+    //                warningTime += Time.deltaTime;
+    //            }
+    //        }
+    //    }
+    //}
+    #endregion
 
     void ShootingTurret()
     {
@@ -184,7 +183,7 @@ public class M_Turret : MonoBehaviour
         Vector3 rayDirection = fireposition.transform.forward;
         Debug.DrawRay(rayOrigin, rayDirection, Color.red, 5.0f); //디버그용 레이 궤도
 
-        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 50f))
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 50f, ~turretEye))
         {
             Debug.Log("turret hit: " + hit.collider.gameObject.name); // 디버그 메시지
 
