@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
         gameoverUI.SetActive(false); //게임오버UI 비활성화
         pressESC.SetActive(false); //ESC_UI 비활성화
 
+        
+
         #region 플레이어 쓰러지기용
         _Y_Player = player.gameObject.GetComponent<Y_Player>(); //플레이어 스크립트 캐싱
         _Y_CanUsePortal = player.gameObject.GetComponent<Y_CanUsePortal>();
@@ -210,6 +212,13 @@ public class GameManager : MonoBehaviour
         portalUI.SetActive(false); //포탈 UI 압수하기
         //portalGun.SetActive(false); //포탈건 오브젝트째로 압수 //하면 큰일난다!!
         portalGun.GetComponent<Y_PortalGunFire>().enabled = false; //코드만 압수하기
+
+        // ********************************************************************************************** 질문할거
+        //_Y_CamRotate.enabled = false; //포탈건이 돌아가버린다 왜이러냐진짜
+        //portalGun.GetComponent<Y_CamRotate>().enabled = false; //이것도 잠그니까 반대로 돈다 어디냐
+        // **********************************************************************************************
+        
+
         #endregion
         Cursor.lockState = CursorLockMode.Confined;//마우스 활성화하기
         pressESC.SetActive(true); //ESC UI 불러오기
@@ -221,6 +230,14 @@ public class GameManager : MonoBehaviour
         escOn = false; //UI 꺼졌으니 bool 거짓
         Cursor.lockState = CursorLockMode.Locked; //마우스 다시 잠그기 
         Time.timeScale = 1f; //시간 원상복구하기
+        
+
+        // **********************************************************************************************
+        //_Y_CamRotate.enabled = true;
+        //portalGun.GetComponent<Y_CamRotate>().enabled = true;
+        // **********************************************************************************************
+        
+        
         #region 압수한거 돌려줄 목록
         pressESC.SetActive(false); //ESC UI끄고...
         portalUI.SetActive(true); //포탈 UI 돌려주고...
