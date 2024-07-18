@@ -38,7 +38,7 @@ public class Y_CanUsePortal : MonoBehaviour
     //}
     #endregion
 
-    private GameObject cloneObject;
+    private GameObject cloneObject;     // 포탈 사이에 물체가 있을 때 양 포탈에 상이 맺히게 해줌
 
     private int inPortalCount = 0;
 
@@ -52,14 +52,14 @@ public class Y_CanUsePortal : MonoBehaviour
 
     protected virtual void Awake()
     {
-        cloneObject = new GameObject();                                     // 클론 오브젝트 생성
-        cloneObject.SetActive(false);                                       // 클론 오브젝트 비활성화
-        var meshFilter = cloneObject.AddComponent<MeshFilter>();            // 클론 오브젝트에 MeshFilter 컴포넌트 추가
-        var meshRenderer = cloneObject.AddComponent<MeshRenderer>();        // 클론 오브젝트에 MeshRenderer 컴포넌트 추가
+        cloneObject = new GameObject();                                     // 클론 오브젝트(이하 "클론") 생성 
+        cloneObject.SetActive(false);                                       // 클론 비활성화
+        var meshFilter = cloneObject.AddComponent<MeshFilter>();            // 클론에 MeshFilter 컴포넌트 추가
+        var meshRenderer = cloneObject.AddComponent<MeshRenderer>();        // 클론에 MeshRenderer 컴포넌트 추가
 
-        meshFilter.mesh = GetComponent<MeshFilter>().mesh;                  // 겜오브젝의 MeshFilter의 mesh 캐싱
-        meshRenderer.materials = GetComponent<MeshRenderer>().materials;    // 겜오브젝의 MeshRenderer의 materials 캐싱
-        cloneObject.transform.localScale = transform.localScale;            // 클론 오브젝트의 크기(localScale)는 겜오브젝 본체의 크기와 같다.
+        meshFilter.mesh = GetComponent<MeshFilter>().mesh;                  // 클론의 Mesh = 겜오브젝의 Mesh
+        meshRenderer.materials = GetComponent<MeshRenderer>().materials;    // 클론의 Materials = 겜오브젝의 Materials
+        cloneObject.transform.localScale = transform.localScale;            // 클론의 크기(localScale)는 겜오브젝 본체의 크기와 같다.
 
         rigidbody = GetComponent<Rigidbody>();                              // 겜오브젝의 리지드바디 컴포넌트 캐싱
         collider = GetComponent<Collider>();                                // 겜오브젝의 콜라이더 컴포넌트 캐싱
@@ -103,7 +103,7 @@ public class Y_CanUsePortal : MonoBehaviour
 
         Physics.IgnoreCollision(collider, wallCollider);    // 겜오브젝과 포탈이 설치된 벽 사이의 충돌을 무시한다.(벽 뚫기)
 
-        cloneObject.SetActive(false);
+        cloneObject.SetActive(true);
 
         ++inPortalCount;
     }
@@ -150,7 +150,7 @@ public class Y_CanUsePortal : MonoBehaviour
         // Swap portal references.(원문)
         // 워프가 끝나고 인/아웃 포탈을 서로 교체
         // 아직 용도를 모르겠음. 인포탈과 아웃포탈은 포탈에 들어설 때 매번 결정되는데 이 구문은 어디에 쓰이는 지 모르겠음.
-        // 클론 오브젝트하고 연관 있을지도, 클론 오브젝트도 무슨 역할인지 모르겠음
+        // 클론 오브젝트하고 연관 있을지도
         var tmp = inPortal;
         inPortal = outPortal;
         outPortal = tmp;

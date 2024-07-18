@@ -20,7 +20,7 @@ public class Y_Portal : MonoBehaviour
     [SerializeField]
     private Transform testTransform;                            // 포탈 설치가 가능한지 먼저 실험하는 변수
 
-    private List<Y_CanUsePortal> portalObjects = new List<Y_CanUsePortal>();    
+    public List<Y_CanUsePortal> portalObjects = new List<Y_CanUsePortal>();    
     // 포탈 사용 가능 오브젝트("이하 포사오")의 리스트, 포탈을 이용할 수 있는 자격증
     // 포탈 사용 시에만 이 곳에 담겨 특정 기능을 수행한다
 
