@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 315589595}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,7 +384,7 @@ Transform:
   m_GameObject: {fileID: 315589594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.35, y: 3.85, z: -14.91}
+  m_LocalPosition: {x: -8.15, y: 2.64, z: -10.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -819,6 +819,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6157341415411382665, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7575262318888342428, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: m_Name
       value: M_Turret
@@ -1031,6 +1035,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6822657175226536122, guid: 95a2ea653dc130f4f941c00bdbbeddd1, type: 3}
   m_PrefabInstance: {fileID: 43370993}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &852287537
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2562885978596407, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_Name
+      value: Elevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.062113
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.30000085
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.6189923
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277644640090036888, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 663cafb986a69a84ba06aa1255f49a8a, type: 3}
 --- !u!1 &943536580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2904,6 +2965,9 @@ MonoBehaviour:
   Particle: {fileID: 0}
   bulletHoleparticle: {fileID: 100002, guid: 9fa86d037b5f34d4299572aa23317ab4, type: 3}
   playercol: {fileID: 707904367}
+  turretEye:
+    serializedVersion: 2
+    m_Bits: 0
   warningTime: 1
   rotationSpeed: 3
   rotX: 0
@@ -3005,12 +3069,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 0}
-  warning: 0
-  shooting: 0
-  noshoot: 0
-  warningTime: 1
-  shootTime: 0
-  shootDelay: 1.5
 --- !u!33 &7915433362019884842
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3086,6 +3144,9 @@ MonoBehaviour:
   Particle: {fileID: 100006, guid: 5c3dd11aeb3b6a34994d41d25a3628e8, type: 3}
   bulletHoleparticle: {fileID: 100002, guid: 9fa86d037b5f34d4299572aa23317ab4, type: 3}
   playercol: {fileID: 707904367}
+  turretEye:
+    serializedVersion: 2
+    m_Bits: 0
   warningTime: 1
   rotationSpeed: 3
   rotX: 0
@@ -3132,3 +3193,4 @@ SceneRoots:
   - {fileID: 606552188}
   - {fileID: 315589597}
   - {fileID: 702231161}
+  - {fileID: 852287537}

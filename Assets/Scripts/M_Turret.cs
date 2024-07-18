@@ -1,12 +1,9 @@
-using JetBrains.Annotations;
-using System;
+
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.Video;
 
 public class M_Turret : MonoBehaviour
 {
@@ -60,7 +57,7 @@ public class M_Turret : MonoBehaviour
         rotZ = gameObject.transform.eulerAngles.z;
         
 
-        if ((MathF.Abs(rotX) > 300 || Mathf.Abs(rotX) < 60) && (Mathf.Abs(rotZ) > 300 || Mathf.Abs(rotZ) < 60) ) //특정 각도 안일때... 활성화 상태로 친다.
+        if ((Mathf.Abs(rotX) > 300 || Mathf.Abs(rotX) < 60) && (Mathf.Abs(rotZ) > 300 || Mathf.Abs(rotZ) < 60) ) //특정 각도 안일때... 활성화 상태로 친다.
             //세워진 기준 60도를 초과일 때. (즉 300도 이상이거나 60도 이하여야 한다... 그래서 이런 기괴한)
             //[프로토는 이거 씀] if (transform.parent == null) //부모 컴포넌트가 없을 때 (플레이어가 안 집으면) 활성화 상태로 친다.
         {
@@ -180,10 +177,19 @@ public class M_Turret : MonoBehaviour
         //레이캐스트 방식
         RaycastHit hit;
         Vector3 rayOrigin = fireposition.transform.position;
-        Vector3 rayDirection = fireposition.transform.forward;
-        Debug.DrawRay(rayOrigin, rayDirection, Color.red, 5.0f); //디버그용 레이 궤도
+        Vector3 rayDirection = fireposition.transform.forward; //기본 레이 방향
 
-        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 50f, ~turretEye))
+        //X축 각도에 랜덤값을 부여해서 총알이 흩뿌려지는 연출.
+        float randomx = Random.Range(-6f, 6f); //랜덤값 변수
+        float randomy = Random.Range(-2f, 2f);
+        Quaternion randomRot = Quaternion.Euler(randomx, randomy, 0f); //랜덤값 각도
+        Vector3 randomRayLego = randomRot * rayDirection; //곱해서 적용
+
+        print("랜덤 값! =" + randomRayLego);
+
+        Debug.DrawRay(rayOrigin, randomRayLego, Color.red, 5.0f); //디버그용 레이 궤도
+
+        if (Physics.Raycast(rayOrigin, randomRayLego, out hit, 50f, ~turretEye))
         {
             Debug.Log("turret hit: " + hit.collider.gameObject.name); // 디버그 메시지
 
