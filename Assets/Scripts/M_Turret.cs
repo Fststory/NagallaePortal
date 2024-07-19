@@ -38,6 +38,17 @@ public class M_Turret : MonoBehaviour
     private Quaternion originalRotation;
     private float maxRotationAngle = 60f;
 
+
+    //오디오
+    int randomrate2;
+    public AudioSource audioSourse;
+
+    public AudioClip[] turretfire;
+    public AudioClip[] turretSearching;
+    public AudioClip[] turretLosting;
+    public AudioClip[] turretgrapping;
+    public AudioClip[] turretdie;
+
     void Start()
     {
         //파티클 설정
@@ -86,6 +97,7 @@ public class M_Turret : MonoBehaviour
                         #endregion
 
                         ShootingTurret();
+                        //FireSound(); //소리
                         shootDelay = 0.3f; //0.3초마다 레이를 처쏴.
                     }
 
@@ -280,6 +292,21 @@ public class M_Turret : MonoBehaviour
         }
         return targetRotation;
     }
+
+    public void FireSound()
+    {
+        Randompick();
+        audioSourse.clip = turretfire[randomrate2];
+        audioSourse.volume = 1.0f;
+        audioSourse.Play();
+    }
+
+    void Randompick()
+    {
+        randomrate2 = Random.Range(0, 1);
+    }
+
+
 }
 
 

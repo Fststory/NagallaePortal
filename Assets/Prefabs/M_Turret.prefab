@@ -784,6 +784,14 @@ MonoBehaviour:
   shootTime: 0
   shootDelay: 0.3
   laser: {fileID: 2400717331897388552}
+  audioSourse: {fileID: 0}
+  turretfire:
+  - {fileID: 8300000, guid: 826426f1ebd77334981fb54bfd41bf4c, type: 3}
+  - {fileID: 8300000, guid: 5bbb81b63319d0445ab238594ac8807f, type: 3}
+  turretSearching: []
+  turretLosting: []
+  turretgrapping: []
+  turretdie: []
 --- !u!136 &6814485563001202907
 CapsuleCollider:
   m_ObjectHideFlags: 0
