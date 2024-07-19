@@ -12,7 +12,7 @@ public class Y_Portal : MonoBehaviour
     private Renderer outlineRenderer;                           // 외곽선 렌더링 담당 변수
 
     [field: SerializeField]
-    public Color PortalColour { get; private set; }             // 포탈 색깔
+    public Color PortalColor { get; private set; }             // 포탈 색깔
 
     [SerializeField]
     private LayerMask placementMask;                            // 설치 가능 레이어 목록
@@ -39,7 +39,7 @@ public class Y_Portal : MonoBehaviour
 
     private void Start()
     {
-        outlineRenderer.material.SetColor("_OutlineColour", PortalColour);      // 외곽선을 PortalColour에 담은 색으로 칠한다.
+        outlineRenderer.material.SetColor("_OutlineColour", PortalColor);      // 외곽선을 PortalColor에 담은 색으로 칠한다.
 
         gameObject.SetActive(false);        // 포탈의 초기 상태는 비활성화
     }

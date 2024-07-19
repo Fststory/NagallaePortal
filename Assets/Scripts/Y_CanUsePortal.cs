@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// 포탈을 이용하려는 오브젝트는 4개의 컴포넌트를 갖고 있어야 합니다.
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class Y_CanUsePortal : MonoBehaviour
 {
     // 이 스크립트를 가진 게임오브젝트는 포탈 간 이동이 가능합니다.
