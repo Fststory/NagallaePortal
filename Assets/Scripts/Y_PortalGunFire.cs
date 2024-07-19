@@ -100,7 +100,7 @@ public class Y_PortalGunFire : MonoBehaviour
             //}
             #endregion
             // Orient the portal according to camera look direction and surface direction.(원문)
-            // 포탈이 설치될 때 방향을 잡아준다. (같은 곳에 포탈을 생성하더라도 어디서 쐈냐에 따라 포탈의 상하좌우가 결정된다.
+            // 포탈이 설치될 때 방향을 잡아준다. (같은 곳에 포탈을 생성하더라도 어디서 쐈냐에 따라 포탈의 상하좌우가 결정된다.)
             var cameraRotation = cameraMove.TargetRotation;                                         // 카메라의 시점 쿼터니언을 담는 변수(cameraRotation)
             var portalRight = cameraRotation * Vector3.right;                                       // 카메라의 시점이 바뀔 때 카메라의 오른쪽 벡터3 변수(portalRight)
 
