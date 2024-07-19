@@ -16,6 +16,8 @@ public class M_Turret : MonoBehaviour
     public Collider playercol;
     public LayerMask turretEye;
 
+    public Animator turretAnim;
+
     public float warningTime = 1.0f;
     public float rotationSpeed = 3.0f;
 
@@ -63,6 +65,7 @@ public class M_Turret : MonoBehaviour
         {
             if (shooting) // 사격 중인가?
             {
+                turretAnim.SetTrigger("Attack");//사격할거면 사격 모드 //Shooting true 선언하는 곳으로 가자.
                 Particle.SetActive(true); //사격할거면 파티클 on
                 if (shootTime > 0) //0.3초마다 총알 하나씩 사격하도록 하는 중
                 {
@@ -90,10 +93,19 @@ public class M_Turret : MonoBehaviour
                 else
                 {
                     shooting = false; //사격 종료
+                    turretAnim.SetTrigger("SetIdle");//사격 모드 종료
                     Particle.SetActive(false); //파티클 종료
                     warning = false; //사격이 완전히 끝났으니 경고도 종료
                     warningTime = 1.0f; //사격이 완전히 끝났으니 경고시간 재설정
                 }
+            }
+            if (gameObject.transform.parent != null)
+            {
+                turretAnim.SetTrigger("Grapped");
+            }
+            else
+            {
+                turretAnim.SetTrigger("UnGrapped");
             }
         }
         else //특정 각도 밖일때.
@@ -197,10 +209,6 @@ public class M_Turret : MonoBehaviour
             {
                 GameManager.gm.AddDamage(1); //처맞기
             }
-            //else if (hit.collider.gameObject.tag == "LabObject")
-            //{
-            //    //사운드 다르게 할거라서 분리 //레이 오류로 파티클 확인하려고 잠시 비활성화해둠
-            //}
             else if (hit.collider.gameObject.name.Contains("Window"))
             {
                 //총알 파티클 넣기(불렛홀이 남는 걸로)
