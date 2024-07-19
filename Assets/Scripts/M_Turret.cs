@@ -94,6 +94,7 @@ public class M_Turret : MonoBehaviour
                 {
                     shooting = false; //사격 종료
                     turretAnim.SetTrigger("SetIdle");//사격 모드 종료
+                    turretAnim.ResetTrigger("Attack"); // SetIdle 트리거를 설정한 후 Attack 트리거를 리셋합니다.
                     Particle.SetActive(false); //파티클 종료
                     warning = false; //사격이 완전히 끝났으니 경고도 종료
                     warningTime = 1.0f; //사격이 완전히 끝났으니 경고시간 재설정
@@ -186,6 +187,7 @@ public class M_Turret : MonoBehaviour
 
     void ShootingTurret()
     {
+        //turretAnim.SetTrigger("Attack");//사격할거면 사격 모드
         //레이캐스트 방식
         RaycastHit hit;
         Vector3 rayOrigin = fireposition.transform.position;

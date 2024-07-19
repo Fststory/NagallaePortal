@@ -23,6 +23,7 @@ public class M_TurretCollider : MonoBehaviour
         {
             if (other.gameObject.name == "Player")
             {
+                //turretAnim.SetTrigger("Attack"); //여기서 해야 한 번만 애니메이팅 //아진짜문제많네
                 if (m_turret.warningTime == 1.0f) //첫 경고인가?
                 {
                     m_turret.warning = true; //경고 시작
@@ -35,7 +36,6 @@ public class M_TurretCollider : MonoBehaviour
                 else if (m_turret.warningTime < 0) //경고시간이 지났다면
                 {
                     m_turret.shooting = true;
-                    //turretAnim.SetTrigger("Attack"); //여기서 해야 한 번만 애니메이팅 //아진짜문제많네
                     m_turret.shootTime = 2.0f; //사격시간을 계속 업데이트하면서 총쏘게만들기
                 }
 

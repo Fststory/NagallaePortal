@@ -811,6 +811,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2573314694792433347, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3627102741951333714, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -820,6 +824,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6157341415411382665, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6166048819699883465, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -973,7 +981,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8a23294412694924fab753b3ba521f13, type: 2}
+  - {fileID: 2100000, guid: a6f7f49c77d5c56439c62fe57f1d366e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1325,7 +1333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1075856268
 Transform:
   m_ObjectHideFlags: 0
@@ -3082,6 +3090,7 @@ MonoBehaviour:
   turretEye:
     serializedVersion: 2
     m_Bits: 0
+  turretAnim: {fileID: 0}
   warningTime: 1
   rotationSpeed: 3
   rotX: 0
@@ -3183,6 +3192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 0}
+  turretAnim: {fileID: 0}
 --- !u!33 &7915433362019884842
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3261,6 +3271,7 @@ MonoBehaviour:
   turretEye:
     serializedVersion: 2
     m_Bits: 0
+  turretAnim: {fileID: 0}
   warningTime: 1
   rotationSpeed: 3
   rotX: 0
