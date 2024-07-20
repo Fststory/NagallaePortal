@@ -316,6 +316,11 @@ public class M_Turret : MonoBehaviour
 
                     //사운드 분리할 예정 //못하겠더염
                 }
+                else if (hit.collider.gameObject.name.Contains("Cube"))
+                {
+                    //큐브 맞을땐 불렛홀 안 남게 하기 위해 분리
+
+                }
                 else if (hit.collider.gameObject.name.Contains("Turret"))
                 {
                     AudioSource heyitsmeSound = hit.collider.gameObject.GetComponent<AudioSource>();
