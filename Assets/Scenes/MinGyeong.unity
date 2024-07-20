@@ -773,6 +773,8 @@ MonoBehaviour:
   activate: {fileID: 2100000, guid: c2b41a369828fd24b8f7ac8da8c5ea4d, type: 2}
   deactivate: {fileID: 2100000, guid: e9eb30b03dd466f479a251bb87d6f514, type: 2}
   playerHere: 0
+  audioSourse: {fileID: 0}
+  Button: []
 --- !u!4 &619655190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2693770768864914013, guid: 0f0876ee69a28e6419f9203a3dc3715a, type: 3}
@@ -811,6 +813,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2573314694792433347, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3627102741951333714, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -823,12 +829,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6166048819699883465, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7575262318888342428, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: m_Name
       value: M_Turret
       objectReference: {fileID: 0}
     - target: {fileID: 7575262318888342428, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7575262318888342428, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8551179636593237982, guid: 449cc4533afc5d946a2ec9fbd316ddc7, type: 3}
@@ -973,7 +987,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8a23294412694924fab753b3ba521f13, type: 2}
+  - {fileID: 2100000, guid: a6f7f49c77d5c56439c62fe57f1d366e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1012,7 +1026,7 @@ Transform:
   m_GameObject: {fileID: 707904365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.95, y: 3.01, z: -4.81}
+  m_LocalPosition: {x: -7.11, y: 3.01, z: -1.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1325,7 +1339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1075856268
 Transform:
   m_ObjectHideFlags: 0
@@ -3082,6 +3096,7 @@ MonoBehaviour:
   turretEye:
     serializedVersion: 2
     m_Bits: 0
+  turretAnim: {fileID: 0}
   warningTime: 1
   rotationSpeed: 3
   rotX: 0
@@ -3092,6 +3107,14 @@ MonoBehaviour:
   shootTime: 0
   shootDelay: 0.3
   laser: {fileID: 0}
+  randomrate2: 0
+  audioSourse: {fileID: 0}
+  turretfire: []
+  turretSearching: []
+  turretLosting: []
+  turretgrapping: []
+  turretdie: []
+  audioMixer: {fileID: 0}
 --- !u!1001 &6408987890695723083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3183,6 +3206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 0}
+  audioSourse: {fileID: 0}
+  turretAnim: {fileID: 0}
 --- !u!33 &7915433362019884842
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3261,6 +3286,7 @@ MonoBehaviour:
   turretEye:
     serializedVersion: 2
     m_Bits: 0
+  turretAnim: {fileID: 0}
   warningTime: 1
   rotationSpeed: 3
   rotX: 0
@@ -3271,6 +3297,14 @@ MonoBehaviour:
   shootTime: 0
   shootDelay: 1.5
   laser: {fileID: 5540505354023831249}
+  randomrate2: 0
+  audioSourse: {fileID: 0}
+  turretfire: []
+  turretSearching: []
+  turretLosting: []
+  turretgrapping: []
+  turretdie: []
+  audioMixer: {fileID: 0}
 --- !u!1 &8818003414027005779
 GameObject:
   m_ObjectHideFlags: 0

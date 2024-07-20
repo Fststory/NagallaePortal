@@ -39,9 +39,19 @@ public class M_DoorButtonBig_another : MonoBehaviour
 
     #endregion
 
+    #region 오디오 변수
+    public AudioSource audioSourse;
+    public AudioClip[] buttonSounds;
+    #endregion
+
+    bool activateSound = true;
+
+    bool deactiveSound = false;
+
+
     void Start()
     {
-
+        audioSourse = transform.GetComponent<AudioSource>(); //오디오 컴포넌트 캐싱
         #region 가이드라인 오브젝트의 Renderer 컴포넌트 가져오기
 
         if (guideline != null)
@@ -65,12 +75,25 @@ public class M_DoorButtonBig_another : MonoBehaviour
         {
             ButtonDOWN(); //버튼 움직임
             Open(); //문 열림
-
+            
+            if (activateSound) //사운드가 한 번도 안 켜졌다면
+            {
+                ButActivate();//사운드 켜고
+                activateSound = false; //켰다고 표시하고
+                deactiveSound = true; //이렇게 해서 꺼짐 사운드를 대비하기
+            }
         }
         else
         {
             ButtonUP(); //버튼 움직임
             Close(); //문 열림
+
+            if (deactiveSound)
+            {
+                ButDeactivate();
+                deactiveSound=false;
+                activateSound = true;
+            }
         }
 
         UpdateMaterial(); //머태리얼 갈기
@@ -123,6 +146,20 @@ public class M_DoorButtonBig_another : MonoBehaviour
     {
         DoorLeft.transform.position = Vector3.Lerp(DoorLeft.transform.position, leftOpen.position, spd * Time.deltaTime);
         DoorRight.transform.position = Vector3.Lerp(DoorRight.transform.position, rightOpen.position, spd * Time.deltaTime);
+    }
+
+    public void ButActivate()
+    {
+        audioSourse.clip = buttonSounds[0];
+        audioSourse.volume = 0.7f;
+        audioSourse.Play();
+    }
+
+    public void ButDeactivate()
+    {
+        audioSourse.clip = buttonSounds[1];
+        audioSourse.volume = 0.7f;
+        audioSourse.Play();
     }
 
 

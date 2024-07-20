@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
 
+    public M_Turret m_Turret; //터렛 스크립트 - 오디오 효과때문에 가져옴
     public M_Lab16UI m_Lab16UI; //디폴트 UI 스크립트
     public GameObject gameoverUI; //게임오버 UI
     public GameObject lab16UI; //피격UI
@@ -38,6 +40,11 @@ public class GameManager : MonoBehaviour
     public bool isitOver = false; //플레이어 사망 확인 bool
     public bool escOn = false; //ESC 활성화 확인 bool
 
+    #region 오디오 변수
+    public AudioSource audioSourse;
+    public AudioClip[] pressESCSound;
+
+    #endregion
 
     private void Awake()
     {
@@ -58,7 +65,7 @@ public class GameManager : MonoBehaviour
         gameoverUI.SetActive(false); //게임오버UI 비활성화
         pressESC.SetActive(false); //ESC_UI 비활성화
 
-        
+        audioSourse = transform.GetComponent<AudioSource>(); //오디오 소스
 
         #region 플레이어 쓰러지기용
         _Y_Player = player.gameObject.GetComponent<Y_Player>(); //플레이어 스크립트 캐싱
@@ -207,6 +214,7 @@ public class GameManager : MonoBehaviour
     void PressESC()
     {
         escOn = true; //UI 켜졌으니 bool 참
+        MenuinSound(); //사운드 켜지나?
         Time.timeScale = 0.0f;//시간 멈추기
         #region 압수할 게임오브젝트 목록
         portalUI.SetActive(false); //포탈 UI 압수하기
@@ -225,9 +233,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void Continue() //계임 계속
+    public void Continue() //게임 계속
     {
         escOn = false; //UI 꺼졌으니 bool 거짓
+        MenuoutSound(); //효과음 틀어
         Cursor.lockState = CursorLockMode.Locked; //마우스 다시 잠그기 
         Time.timeScale = 1f; //시간 원상복구하기
         
@@ -268,11 +277,30 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void Ending()
+    {
+        SceneManager.LoadScene("Ending");
+    }
+
     //public void HP100Mode()
     //{
     //    //알파용: 중간에 시작하고 HP가 100인 씬을 실행한다.
     //    Time.timeScale = 1f;
     //    SceneManager.LoadScene("LAB16_ver.build_PlayerHP100");
     //}
+
+    public void MenuinSound()
+    {
+        audioSourse.clip = pressESCSound[0];
+        audioSourse.volume = 0.7f;
+        audioSourse.Play();
+    }
+    public void MenuoutSound()
+    {
+        audioSourse.clip = pressESCSound[1];
+        audioSourse.volume = 0.7f;
+        audioSourse.Play();
+    }
+    
 
 }

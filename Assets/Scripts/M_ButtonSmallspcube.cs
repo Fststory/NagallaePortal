@@ -17,9 +17,16 @@ public class M_ButtonSmallspcube : MonoBehaviour
 
     public float spd = 3.0f;
 
+
+    #region 오디오 변수
+    public AudioSource audioSourse;
+    public AudioClip[] buttonSound;
+    #endregion
+
+
     void Start()
     {
-        
+        audioSourse = transform.GetComponent<AudioSource>(); //오디오 컴포넌트 캐싱
     }
 
     void Update()
@@ -31,6 +38,9 @@ public class M_ButtonSmallspcube : MonoBehaviour
                 alreadySpawn = true;
                 GameObject Cube = Instantiate(cube);
                 Cube.transform.position = spawnPoint.transform.position;
+                audioSourse.clip = buttonSound[0]; //사운드클립
+                audioSourse.volume = 0.7f;//사운드클립
+                audioSourse.Play();//사운드클립
             }
         }
         else

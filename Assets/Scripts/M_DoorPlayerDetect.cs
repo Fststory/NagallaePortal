@@ -13,13 +13,12 @@ public class M_DoorPlayerDetect : MonoBehaviour
         m_Elevator = transform.parent.GetComponent<M_Elevator>();
     }
 
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider other)
     {
-        m_Elevator.playerGoal = true;
+        if (other.gameObject.name == "Player")
+        {
+            m_Elevator.playerGoal = true;
+        }
     }
 
 }
