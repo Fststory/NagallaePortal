@@ -28,6 +28,8 @@ public class Y_PortalGunFire : MonoBehaviour
     //private LayerMask layer;                    // 생성 가능 구분 레이어 (기존 CanPortalWall 태그 이용 => 레이어로 구분)
     #endregion
 
+    public GameObject Camera;           // 포탈건 발사 포인트
+
     [SerializeField]
     private Y_PortalPair portals;             // 포탈 쌍 
 
@@ -72,11 +74,11 @@ public class Y_PortalGunFire : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))                                        // 좌클릭 시
         {
-            FirePortal(0,transform.position, transform.forward, 250.0f);        // 현재 위치에서 바라보는 방향으로 최대 250m까지 가는 Ray 발사(0번 포탈 생성)
+            FirePortal(0,Camera.transform.position, Camera.transform.forward, 250.0f);        // 현재 위치에서 바라보는 방향으로 최대 250m까지 가는 Ray 발사(0번 포탈 생성)
         }
         else if (Input.GetMouseButtonDown(1))                                   // 우클릭 시
         {
-            FirePortal(1, transform.position, transform.forward, 250.0f);       // 현재 위치에서 바라보는 방향으로 최대 250m까지 가는 Ray 발사(1번 포탈 생성)
+            FirePortal(1, Camera.transform.position, Camera.transform.forward, 250.0f);       // 현재 위치에서 바라보는 방향으로 최대 250m까지 가는 Ray 발사(1번 포탈 생성)
         }        
     }
 

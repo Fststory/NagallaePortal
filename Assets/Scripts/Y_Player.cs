@@ -16,25 +16,29 @@ public class Y_Player : MonoBehaviour
     private Rigidbody playerRB;
     public float jumpForce;
     public bool isGround;
-    
+
+
     #endregion
 
     #region PlayerRotate() 변수
+    // 초기 회전 상태 저장
+    Quaternion playerRotation;
     // 회전 속도 변수
     public float rotSpeed = 200f;
     // 마우스 좌우 이동(y축 회전 값) 변수
     float mx = 0;
     #endregion
 
-    #region PlayerHealth() 변수
-    // 체력 변수
-    public float currentHp = 100.0f;    // 현재 체력(피해 입기 전 세팅 값: 100)
-    public M_BulletMove bullet;         // 피해를 주는 객체에서 데미지 값을 가져 옴
+    #region PlayerHealth() 변수 (폐기)
+    //// 체력 변수
+    //public float currentHp = 100.0f;    // 현재 체력(피해 입기 전 세팅 값: 100)
+    //public M_BulletMove bullet;         // 피해를 주는 객체에서 데미지 값을 가져 옴
     #endregion
 
     private void Start()
     {
         playerRB = GetComponent<Rigidbody>();           // 점프 가능 여부 판정 시 사용(OnCollisionEnter 부분)
+
     }
 
 
@@ -44,14 +48,14 @@ public class Y_Player : MonoBehaviour
         //PlayerMove();
         //PlayerJump();
         PlayerRotate();
-        PlayerHealth();
+        //PlayerHealth();
     }
 
     private void FixedUpdate()
     {
         PlayerMove();
         PlayerJump();
-    }
+    }    
 
     void PlayerMove()
     {
@@ -66,9 +70,12 @@ public class Y_Player : MonoBehaviour
 
         dir.y = 0;
 
+        playerRB.velocity = new Vector3(dir.x * moveSpeed, playerRB.velocity.y, dir.z * moveSpeed);
+
+
         // p = p0 + vt
         //transform.position += dir * moveSpeed * Time.deltaTime;
-        playerRB.velocity = dir * moveSpeed;
+        //playerRB.velocity = dir * moveSpeed;
     }
 
     void PlayerJump()
@@ -85,33 +92,37 @@ public class Y_Player : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X");
         mx += mouseX * rotSpeed * Time.deltaTime;
-        transform.eulerAngles = new Vector3(0, mx, 0);
+        playerRotation *= Quaternion.Euler(0, mx, 0);
+        transform.rotation = playerRotation;
     }
 
-    private void OnCollisionEnter(Collision something)              // Player의 점프 가능 여부 판단/ 피해를 체력에 적용시키는 기능
+    private void OnCollisionEnter(Collision something)              // Player의 점프 가능 여부 판단/ 피해를 체력에 적용시키는 기능(폐기)
     {
         if (something.gameObject.CompareTag("Ground"))              // Ground 태그가 있는 물체와 충돌하면
         {
             isGround = true;                                        // 다시 점프할 수 있다.
         }
+        #region player 체력 => gamemanager에서 다룸
+        //M_BulletMove bullet = something.gameObject.GetComponent<M_BulletMove>();        // 충돌체가 M_BulletMove 컴포넌트를 갖고 있는지 확인
 
-        M_BulletMove bullet = something.gameObject.GetComponent<M_BulletMove>();        // 충돌체가 M_BulletMove 컴포넌트를 갖고 있는지 확인
-
-        if (bullet != null)                                                             // 만약 충돌체가 총알이라면..
-        {            
-            float damage = bullet.damage;                                               // M_BulletMove 총알의 데미지를 갖고 와서
-            currentHp -= damage;                                                        // 현재 체력에서 깎는다.         
-        }
+        //if (bullet != null)                                                             // 만약 충돌체가 총알이라면..
+        //{            
+        //    float damage = bullet.damage;                                               // M_BulletMove 총알의 데미지를 갖고 와서
+        //    currentHp -= damage;                                                        // 현재 체력에서 깎는다.         
+        //}
+        #endregion
     }
-    void PlayerHealth()
-    {
-        if (currentHp < 0.0f)                   // 만약 체력이 다 떨어지면..
-        {
-            Destroy(gameObject);                // 플레이어의 게임오브젝트를 파괴한다.
-        }
-        if (currentHp < 100.0f)                 // 풀피가 아니면...
-        {
-            currentHp += Time.deltaTime;        // 체력이 조금씩 회복된다.
-        }
-    }
+    #region player 체력 => gamemanager에서 다룸
+    //void PlayerHealth()
+    //{
+    //    if (currentHp < 0.0f)                   // 만약 체력이 다 떨어지면..
+    //    {
+    //        Destroy(gameObject);                // 플레이어의 게임오브젝트를 파괴한다.
+    //    }
+    //    if (currentHp < 100.0f)                 // 풀피가 아니면...
+    //    {
+    //        currentHp += Time.deltaTime;        // 체력이 조금씩 회복된다.
+    //    }
+    //}
+    #endregion
 }

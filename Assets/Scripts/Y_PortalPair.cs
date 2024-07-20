@@ -12,7 +12,7 @@ public class Y_PortalPair : MonoBehaviour
 
         if (Portals.Length != 2)     // 만약 포탈의 갯수가 2개가 아니라면
         {
-            // 콘솔에 로그를 띄워 디버그 할 것이다.
+            // 콘솔에 에러 로그를 띄울 것이다.
             Debug.LogError("PortalPair children must contain exactly two Y_Portal components in total.");
         }
     }
