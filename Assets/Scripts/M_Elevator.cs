@@ -15,15 +15,23 @@ public class M_Elevator : MonoBehaviour
 
     public bool letsgoNext = false;
 
-    float spd = 0.7f;
+    //float spd = 0.7f;
     public float countShakeTime = 1.0f;
-    public float countOpentime = 1.5f;
+    public float countOpentime = 1.7f;
 
-    float nextlevel = 4.0f;
+    public float elevatorstartMoveTime = 2.0f; //엘레베이터 연출사운드
+    bool justonce = false;
+    float nextlevel = 7.0f; //다음 씬까지 카운트
 
     public bool playerGoal = false; //플레이어 탐지 영역 콜라이더에서 스크립트 넣어서 제어하기
 
     public float waitForplayer = 1.0f;
+
+    #region 사운드
+    public AudioSource audioSourse;
+
+    public AudioClip[] Elevator;
+    #endregion
 
 
     void Start()
@@ -35,7 +43,8 @@ public class M_Elevator : MonoBehaviour
         print(ElevatorOriginalPos);
 
         AnimController.enabled = false;
-    
+
+        audioSourse = transform.GetComponent<AudioSource>(); //오디오 컴포넌트
     }
 
     void Update()
@@ -50,6 +59,7 @@ public class M_Elevator : MonoBehaviour
             StartCoroutine(CameraShake(0.3f, 0.3f)); //흔들면서
             AnimController.enabled = true; //문열어주고
             frontCollider.SetActive(false); //콜라이더 제거
+            audioSourse.PlayOneShot(Elevator[0]); //첫 엘베 한번만
             alreadyDoit = true;
         }
         #endregion
@@ -63,8 +73,9 @@ public class M_Elevator : MonoBehaviour
             else
             {
                 frontCollider.SetActive(true); //이제 못지나간다.
-                StartCoroutine(CameraShake(0.3f, 0.3f)); //흔들면서
+                StartCoroutine(CameraShake(0.3f, 0.2f)); //흔들면서
                 AnimController.SetTrigger("PlayerGoal");
+                CloseDoor(); //문 닫는 소리;
                 letsgoNext = true;
                 playerGoal = false;
             }
@@ -72,10 +83,20 @@ public class M_Elevator : MonoBehaviour
 
         if (letsgoNext)
         {
-            nextlevel -= Time.deltaTime;
+            elevatorstartMoveTime -= Time.deltaTime; //다음 연출을 틀기까지...
+            nextlevel -= Time.deltaTime; //다음 씬으로 가기까지...
+
+            if (elevatorstartMoveTime < 0 && !justonce)
+            {
+                StartCoroutine(CameraShake(0.7f, 0.2f)); //오? 흔들어보자
+                StartMoving(); //사운드 틀면서...
+                justonce = true; //한 번만.
+            }
+
             if (nextlevel < 0)
             {
                 print("다음 씬!");
+                GameManager.gm.Ending();
                 //이제 게임매니저에서 다음 씬 불러오기.
                 letsgoNext = false;
             }
@@ -103,6 +124,19 @@ public class M_Elevator : MonoBehaviour
         }
 
         gameObject.transform.position = ElevatorOriginalPos; //카메라 원위치
+    }
+
+    public void CloseDoor()
+    {
+        audioSourse.clip = Elevator[1];
+        audioSourse.volume = 0.7f;
+        audioSourse.Play();
+    }
+    public void StartMoving()
+    {
+        audioSourse.clip = Elevator[2];
+        audioSourse.volume = 0.7f;
+        audioSourse.Play();
     }
 
 }

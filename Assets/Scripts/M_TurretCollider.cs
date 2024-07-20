@@ -9,11 +9,29 @@ public class M_TurretCollider : MonoBehaviour
 
     M_Turret m_turret;
 
+    public AudioSource audioSourse; //오디오
+
     public Animator turretAnim;
+    
+    bool hi; //한 번만 인사할 준비
+    float sayhitime = 0.5f; //인사할 시간
 
     void Start()
     {
         m_turret = GetComponentInParent<M_Turret>();
+        audioSourse = transform.GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (!m_turret.shooting)
+        {
+            hi = false;
+        }
+        if (m_turret.turreteyeoff)
+        {
+            gameObject.SetActive(false);
+        }
 
     }
 
@@ -23,7 +41,7 @@ public class M_TurretCollider : MonoBehaviour
         {
             if (other.gameObject.name == "Player")
             {
-                //turretAnim.SetTrigger("Attack"); //여기서 해야 한 번만 애니메이팅 //아진짜문제많네
+                //turretAnim.SetTrigger("Attack"); //여기서 해야 한 번만 애니메이팅 //아진짜여기아니었다
                 if (m_turret.warningTime == 1.0f) //첫 경고인가?
                 {
                     m_turret.warning = true; //경고 시작
@@ -32,6 +50,12 @@ public class M_TurretCollider : MonoBehaviour
                 else if (m_turret.warningTime > 0) //경고 중인가?
                 {
                     m_turret.warningTime -= Time.deltaTime; //타이머 계속
+                    
+                    if (m_turret.warningTime < sayhitime && !hi) //경고 후 0.5초 이후에 아직 인사 안했으면
+                    {
+                        m_turret.SearchingSound(); //인사 한번 해
+                        hi = true;
+                    }
                 }
                 else if (m_turret.warningTime < 0) //경고시간이 지났다면
                 {
@@ -58,4 +82,6 @@ public class M_TurretCollider : MonoBehaviour
             }
         }
     }
+
+    
 }

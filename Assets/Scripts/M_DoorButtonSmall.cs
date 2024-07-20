@@ -58,6 +58,10 @@ public class M_DoorButtonSmall : MonoBehaviour
 
     public bool playerHere;
 
+    #region 오디오 변수
+    public AudioSource audioSourse;
+    public AudioClip[] Button;
+    #endregion
 
     void Start()
     {

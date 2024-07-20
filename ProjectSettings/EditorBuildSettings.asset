@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LAB16_ver.build_PlayerHP100.unity
     guid: f0dbd4bcf83226c4f8be1dbbbc97f6bd
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 2a62662d0ff7fac4fb4a7a24759bc2e0
   m_configObjects: {}

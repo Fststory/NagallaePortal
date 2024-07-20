@@ -79,7 +79,7 @@ public class M_GrabMe : MonoBehaviour
 
         if (Physics.Raycast(rayOrigin, rayDirection, out hit, grabRange))
         {
-            Debug.Log("Raycast hit: " + hit.collider.gameObject.name); // 디버그 메시지
+            //Debug.Log("Raycast hit: " + hit.collider.gameObject.name); // 디버그 메시지
 
             if (hit.collider != null && hit.collider.CompareTag("LabObject"))
             {
