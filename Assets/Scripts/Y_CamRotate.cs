@@ -74,6 +74,5 @@ public class Y_CamRotate : MonoBehaviour
     public void ResetTargetRotation()
     {
         TargetRotation = Quaternion.LookRotation(transform.forward, Vector3.up);
-
     }
 }
