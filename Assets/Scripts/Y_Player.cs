@@ -11,6 +11,7 @@ public class Y_Player : MonoBehaviour
     // Player의 이동 속도 변수
     public float moveSpeed = 5;
     Vector3 dir = Vector3.zero;
+    
 
     // Rigidbody 선언 및 점프력, 땅 위에 있는지 변수
     private Rigidbody playerRB;
@@ -35,10 +36,12 @@ public class Y_Player : MonoBehaviour
     //public M_BulletMove bullet;         // 피해를 주는 객체에서 데미지 값을 가져 옴
     #endregion
 
+    Animator playerAnimation;
+
     private void Start()
     {
         playerRB = GetComponent<Rigidbody>();           // 점프 가능 여부 판정 시 사용(OnCollisionEnter 부분)
-
+        playerAnimation = transform.Find("Sparrow_LOD0").gameObject.GetComponent<Animator>();     // 애니메이터 캐싱!
     }
 
 
@@ -49,16 +52,29 @@ public class Y_Player : MonoBehaviour
         //PlayerJump();
         PlayerRotate();
         //PlayerHealth();
+        if (isGround)
+        {
+            playerAnimation.SetBool("Jumping", false);
+        }
+        PlayerJump();
+        if (playerRB.velocity.y < 0)
+        {
+            playerAnimation.SetBool("Flying", true);
+        }
+        else
+        {
+            playerAnimation.SetBool("Flying", false);
+        }
     }
 
     private void FixedUpdate()
     {
         PlayerMove();
-        PlayerJump();
     }    
 
     void PlayerMove()
     {
+        playerAnimation.SetBool("Walking", true);
         // 플레이어의 키 입력에 따라 움직임(전후좌우)을 구현
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
@@ -70,9 +86,13 @@ public class Y_Player : MonoBehaviour
 
         dir.y = 0;
 
-        playerRB.velocity = new Vector3(dir.x * moveSpeed, playerRB.velocity.y, dir.z * moveSpeed);
+        playerRB.velocity = new Vector3(dir.x * moveSpeed, playerRB.velocity.y, dir.z * moveSpeed);        
 
-
+        if (moveX == 0 && moveZ == 0)
+        {
+            playerAnimation.SetBool("Walking", false);
+        }
+        
         // p = p0 + vt
         //transform.position += dir * moveSpeed * Time.deltaTime;
         //playerRB.velocity = dir * moveSpeed;
@@ -85,6 +105,8 @@ public class Y_Player : MonoBehaviour
         {
             playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);       // 점프력만큼 점프한다.
             isGround = false;                                                   // 땅에서 떨어짐을 표시(점프가 불가능)
+
+            playerAnimation.SetBool("Jumping", true);
         }
     }
 

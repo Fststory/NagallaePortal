@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OtherPortal>k__BackingField: {fileID: 7768455697606141965}
   outlineRenderer: {fileID: 5722789122968243622}
-  <PortalColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <PortalColor>k__BackingField: {r: 0.33333334, g: 0.6862745, b: 1, a: 1}
   placementMask:
     serializedVersion: 2
     m_Bits: 3072
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OtherPortal>k__BackingField: {fileID: 6918711654785795371}
   outlineRenderer: {fileID: 2188860484728775074}
-  <PortalColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <PortalColor>k__BackingField: {r: 1, g: 0.4392157, b: 0, a: 1}
   placementMask:
     serializedVersion: 2
     m_Bits: 3072
