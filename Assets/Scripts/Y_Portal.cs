@@ -31,10 +31,15 @@ public class Y_Portal : MonoBehaviour
     public Renderer Renderer { get; private set; }              // 포탈 렌더링 담당 변수
     private new BoxCollider collider;                           // 포탈 콜라이더 담당 변수 (포탈 문틀 X)
 
+    public AudioSource audioSource;
+    public AudioClip usingPortalSound;
+    int portalCount=0;
+
     private void Awake()
     {
         collider = GetComponent<BoxCollider>();                 // 박스형 콜라이더 캐싱
         Renderer = GetComponent<Renderer>();                    // 렌더러 캐싱
+        audioSource = GetComponent<AudioSource>();              // 오디오 소스 캐싱
     }
 
     private void Start()
@@ -55,6 +60,11 @@ public class Y_Portal : MonoBehaviour
             if (objPos.z > 0.0f)            // 포탈 중심에서 조금이라도 안으로 들어간다면
             {
                 portalObjects[i].Warp();    // 해당 포사오는 워프를 시전한다.
+                if (portalObjects[i].CompareTag("Player"))      // 만약 해당 포사오가 플레이어라면
+                {
+                    audioSource.clip = usingPortalSound;
+                    audioSource.Play();
+                }
             }
         }
     }
@@ -76,7 +86,7 @@ public class Y_Portal : MonoBehaviour
         if (portalObjects.Contains(obj))                            // 만약 other가 Y_CanUsePortal 컴포넌트를 갖고 있다면..
         {
             portalObjects.Remove(obj);                              // 포사오 리스트에서 obj를 제거한다.
-            obj.ExitPortal(wallCollider);                           // other과 포탈 사이의 충돌을 다시 활성화한다.
+            obj.ExitPortal(wallCollider);                           // other과 포탈 사이의 충돌을 다시 활성화한다.            
         }
     }
 

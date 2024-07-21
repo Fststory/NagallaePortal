@@ -6,6 +6,7 @@ public class Y_PlayerUsePortal : Y_CanUsePortal
 {
     private Y_CamRotate camRotate;
 
+
     protected override void Awake()
     {
         base.Awake();

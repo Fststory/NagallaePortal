@@ -51,11 +51,7 @@ public class Y_Player : MonoBehaviour
         //PlayerMove();
         //PlayerJump();
         PlayerRotate();
-        //PlayerHealth();
-        if (isGround)
-        {
-            playerAnimation.SetBool("Jumping", false);
-        }
+        //PlayerHealth();        
         PlayerJump();
         if (playerRB.velocity.y < 0)
         {
@@ -103,10 +99,9 @@ public class Y_Player : MonoBehaviour
         // 플레이어가 땅을 밟고 있을 때 [space]를 누르면...
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
+            playerAnimation.SetTrigger("Jumping");
             playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);       // 점프력만큼 점프한다.
             isGround = false;                                                   // 땅에서 떨어짐을 표시(점프가 불가능)
-
-            playerAnimation.SetBool("Jumping", true);
         }
     }
 

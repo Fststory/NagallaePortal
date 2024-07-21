@@ -41,10 +41,16 @@ public class Y_PortalGunFire : MonoBehaviour
 
     private Y_CamRotate cameraMove;          // 
 
+    public AudioSource audioSource;
+
+    public AudioClip[] placeSound;
+
     private void Awake()
     {
         // Y_CamRotate 컴포넌트 캐싱
         cameraMove = GetComponent<Y_CamRotate>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -127,6 +133,16 @@ public class Y_PortalGunFire : MonoBehaviour
             if (wasPlaced)                                           // 만약 포탈이 설치됐으면...
             {
                 crosshair.SetPortalPlaced(portalNum, true);          // 해당 포탈과 연결된 크로스헤어를 활성화한다.
+                if (portalNum == 0)
+                {
+                    audioSource.clip = placeSound[0];
+                    audioSource.Play();
+                }
+                else if (portalNum == 1)
+                {
+                    audioSource.clip = placeSound[1];
+                    audioSource.Play();
+                }
             }
         }
     }

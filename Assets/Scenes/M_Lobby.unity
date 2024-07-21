@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 301783966}
   - component: {fileID: 301783965}
   m_Layer: 5
-  m_Name: NagallaeAdition
+  m_Name: NagallaeEdition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,7 +396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Nagallae Adition
+  m_Text: Nagallae Edition
 --- !u!222 &301783967
 CanvasRenderer:
   m_ObjectHideFlags: 0
